@@ -39,6 +39,9 @@ class LavandaServiceProvider extends ServiceProvider
         Filesystem $fileSystem,
         FormBuilder $formBuilder)
     {
+        // required services
+        $this->app->register('Kris\LaravelFormBuilder\FormBuilderServiceProvider');
+    
         // model dependencies
         Model::setRequest($request);
         Model::setView($viewFactory);
