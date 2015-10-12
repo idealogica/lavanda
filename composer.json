@@ -1,0 +1,55 @@
+{
+    "name": "idealogica/lavanda",
+    "description": "Administrator control panel for Laravel application.",
+    "keywords": ["laravel", "crud", "admin", "control", "panel", "administrator", "lavanda"],
+    "homepage": "",
+    "license": "MIT",
+    "authors": 
+    [
+        {
+            "name": "Konstatin Nikiforov",
+            "email": "ok@idealogica.ru",
+            "homepage": "http://www.idealogica.ru"
+        }
+    ],
+    "require": 
+    {
+        "php": ">=5.5.9",
+        "laravel/framework": "~5.1",
+        "kris/laravel-form-builder": "~1.6",
+        "mistic100/randomcolor": "~1.0"
+    },
+    "require-dev": 
+    {
+        "phpunit/phpunit": "~4.0",
+        "orchestra/testbench": "~3.1",
+        "mikey179/vfsStream": "~1.6"
+    },    
+    "autoload": 
+    {
+        "psr-4": 
+        {
+            "Lavanda\\": "src/"
+        },    
+        "files": 
+        [
+            "src/helpers.php",
+            "src/color.php"
+        ]       
+    },
+    "autoload-dev": 
+    {
+        "classmap":
+        [
+            "tests/LavandaTestCase.php",
+            "tests/LavandaDBTestCase.php",
+            "tests/models/Comment.php",
+            "tests/models/Post.php",
+            "tests/models/Tag.php"        
+        ]
+    },
+    "config": 
+    {
+        "preferred-install": "dist"
+    }
+}

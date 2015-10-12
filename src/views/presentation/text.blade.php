@@ -1,0 +1,1 @@
+{!! activateLinks(!empty($parms['max_len']) ? str_limit($value, $parms['max_len']) : $value) !!}

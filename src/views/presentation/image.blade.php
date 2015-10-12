@@ -1,0 +1,1 @@
+{!! renderImage($value, arrayMergeWithStrings($parms['img_attrs'], ['class' => 'img-rounded img-responsive'], ' '), $parms['img_width'], $parms['img_height']) !!}

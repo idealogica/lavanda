@@ -1,0 +1,253 @@
+body
+{
+    padding: 20px 20px 40px 20px;
+    min-width: 650px;
+    background-image: url(background.png);
+}
+h1
+{
+    margin: 25px 0 20px 0;
+}
+a
+{
+    color: #8B63B5;
+}
+a:focus, a:hover
+{
+    color: #694490;
+}
+input[type="file"]
+{
+    height: auto;
+}
+.img-responsive
+{
+    width: 100%;
+}
+.sort
+{
+    min-width: 150px;
+}
+th select
+{
+    font-weight: normal;
+}
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th
+{
+    line-height: 30px;
+}
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover
+{
+    background-color: #8B63B5;
+    border-color: #8B63B5;
+}
+.pagination > li > a,
+.pagination > li > span
+{
+    color: #8B63B5;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #8B63B5;
+}
+.btn-primary
+{
+    background-color: #8B63B5;
+    border-color: #8B63B5;
+}
+.btn-primary:focus, .btn-primary:hover
+{
+    background-color: #694490;
+    border-color: #694490;
+}
+.form-control:focus
+{
+    border-color: #8B63B5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(147, 92, 205, 0.6);
+}
+.navbar
+{
+    font-size: 1.15em;
+}
+.navbar-brand div
+{
+    font-size: 12px;
+    color: #504F4F;
+}
+.navbar-default .navbar-brand
+{
+    font-size: 1.4em;
+    height: 55px;
+    color: #8B63B5;
+    padding: 9px 12px;
+}
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover
+{
+    color: #8B63B5;
+}
+.navbar-toggle
+{
+    margin-top: 11px;
+}
+.navbar-default .navbar-nav > li > a
+{
+    line-height: 25px;
+}
+.lavanda
+{
+    margin: 8px 10px 8px 0;
+    float: right;
+    width: 68px;
+    height: 39px;
+}
+.required:after
+{
+  content: " *";
+  color: red;
+}
+form button.form-control
+{
+    width: auto;
+}
+.search-form
+{
+    width: 340px;
+}
+.search-form div
+{
+    margin-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+.search-form input,
+.search-form button
+{
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+@media (max-width: 768px)
+{
+    .search-form
+    {
+        margin-top: 15px;
+        clear: both;
+    }
+}
+.pagination
+{
+    margin: 0;
+}
+.list-actions
+{
+    width: 1px;
+}
+.list-panel
+{
+    margin: 20px 0;
+}
+.list-panel .add-button
+{
+    margin-left: 16px;
+}
+.item-actions a
+{
+    margin-right: 10px;
+}
+.form-container
+{
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.form-container > .form-group
+{
+    margin: 0;
+}
+.form-container > .form-group > input[type='checkbox']
+{
+    margin-left: 10px;
+}
+.form-container > .form-group > input[type='checkbox']:nth-child(1)
+{
+    margin-left: 0;
+}
+.sub-form
+{
+    margin-bottom: 10px;
+    width: 85%;
+    background-color: #E7E7E7;
+    padding: 10px;
+    border-radius: 3px;
+}
+.image-field
+{
+    display: table;
+    width: 100%;
+}
+.image-field-row
+{
+    display: table-row;
+    width: 100%;
+}
+.image-field-input
+{
+    width: 100%;
+    display: table-cell;
+    vertical-align: top;
+}
+.image-field-cell
+{
+    display: table-cell;
+    padding-left: 10px;
+    vertical-align: top;
+}
+.tiles a
+{
+    text-decoration: none;
+}
+.tile
+{
+    color: #000;
+    overflow: hidden;
+    padding: 5px 10px;
+    height: 90px;
+    border-radius: 5px;
+    margin-bottom: 22px;
+}
+.tile:hover
+{
+    opacity: 0.7;
+}
+.tile-badge-container
+{
+    display: table; width: 100%;
+}
+.tile-badge-container > div
+{
+    width: 100%;
+    height: 57px;
+    display: table-cell;
+    vertical-align: bottom;
+    text-align: right;
+}
+.lookup-entity-child
+{
+    display: inline-block;
+    margin: 3px 20px 3px 0;
+}
