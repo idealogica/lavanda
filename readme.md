@@ -7,13 +7,13 @@ Installation
 Lavanda\LavandaServiceProvider::class
 
 2. Publish Lavanda assets:
-php artisan vendor:publish --provider 'Lavanda\LavandaServiceProvider' --tag=public
+php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=public
 
 And if neccesary config, lang and views:
 
-php artisan vendor:publish --provider 'Lavanda\LavandaServiceProvider' --tag=config
-php artisan vendor:publish --provider 'Lavanda\LavandaServiceProvider' --tag=lang
-php artisan vendor:publish --provider 'Lavanda\LavandaServiceProvider' --tag=views
+php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=config
+php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=lang
+php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=views
 
 Coding style
 
