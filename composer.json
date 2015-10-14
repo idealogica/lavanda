@@ -17,7 +17,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "~5.1",
         "kris/laravel-form-builder": "~1.6",
-        "mistic100/randomcolor": "~1.0"
+        "mistic100/randomcolor": "~1.0",
+        "idealogica/color" : "~1.0.1"
     },
     "require-dev": 
     {
