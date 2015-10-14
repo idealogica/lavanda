@@ -35,7 +35,6 @@
         "files": 
         [
             "src/helpers.php",
-            "src/color.php"
         ]       
     },
     "autoload-dev": 
