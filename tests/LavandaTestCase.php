@@ -5,8 +5,7 @@ abstract class LavandaTestCase extends FormBuilderTestCase
     protected function getPackageProviders($app)
     {
         return [
-            'Kris\LaravelFormBuilder\FormBuilderServiceProvider',
-            'Lavanda\LavandaServiceProvider'
+            'Idealogica\Lavanda\LavandaServiceProvider'
         ];
     }
 

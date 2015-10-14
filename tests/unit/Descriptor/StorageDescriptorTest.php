@@ -1,6 +1,6 @@
 <?php
 use org\bovigo\vfs\vfsStream;
-use Lavanda\Descriptor\StorageDescriptor;
+use Idealogica\Lavanda\Descriptor\StorageDescriptor;
 
 class StorageDescriptorTest extends LavandaTestCase
 {

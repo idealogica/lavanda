@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Field;
+namespace Idealogica\Lavanda\Field;
 
 use Illuminate\Support\Collection;
 use Kris\LaravelFormBuilder\Fields\ParentType;

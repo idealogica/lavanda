@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;

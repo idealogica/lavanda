@@ -1,6 +1,6 @@
 <?php
 use App\Comment;
-use Lavanda\Field\FieldSetType;
+use Idealogica\Lavanda\Field\FieldSetType;
 
 class FieldSetTypeTest extends LavandaTestCase
 {

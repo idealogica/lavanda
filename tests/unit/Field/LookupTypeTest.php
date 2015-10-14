@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Field\LookupType;
+use Idealogica\Lavanda\Field\LookupType;
 
 class LookupTypeTest extends LavandaDBTestCase
 {

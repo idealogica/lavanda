@@ -1,15 +1,15 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use BadMethodCallException;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\Form;
 use Kris\LaravelFormBuilder\FormBuilder;
-use Lavanda\Descriptor\Descriptor;
-use Lavanda\Descriptor\SortDescriptor;
-use Lavanda\Descriptor\StorageDescriptor;
-use Lavanda\Descriptor\PresentationDescriptor;
+use Idealogica\Lavanda\Descriptor\Descriptor;
+use Idealogica\Lavanda\Descriptor\SortDescriptor;
+use Idealogica\Lavanda\Descriptor\StorageDescriptor;
+use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as EloquentModel;

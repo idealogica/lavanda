@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Field\DateType;
+use Idealogica\Lavanda\Field\DateType;
 
 class DateTypeTest extends LavandaTestCase
 {

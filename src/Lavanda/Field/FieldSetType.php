@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Field;
+namespace Idealogica\Lavanda\Field;
 
 use Kris\LaravelFormBuilder\Fields\ParentType;
 use Kris\LaravelFormBuilder\Fields\ChildFormType;

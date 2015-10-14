@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor\Presentation;
+namespace Idealogica\Lavanda\Descriptor\Presentation;
 
 /**
  * Describes how to render HTML code for named by preperty sub-items.

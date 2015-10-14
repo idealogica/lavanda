@@ -3,16 +3,18 @@
 namespace App;
 
 use Carbon\Carbon;
-use Lavanda\Model;
-use Lavanda\Descriptor\Descriptor;
-use Lavanda\Descriptor\SortDescriptor;
-use Lavanda\Descriptor\StorageDescriptor;
-use Lavanda\Descriptor\PresentationDescriptor;
+use Idealogica\Lavanda\Model;
+use Idealogica\Lavanda\Descriptor\Descriptor;
+use Idealogica\Lavanda\Descriptor\SortDescriptor;
+use Idealogica\Lavanda\Descriptor\StorageDescriptor;
+use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Kris\LaravelFormBuilder\Form;
 use Illuminate\Database\Eloquent\Builder;
 
 class Post extends Model
 {
+    protected $table = 'lv_posts';
+
     public static function buildActionsDescriptor(Descriptor $descriptor)
     {
         $descriptor->
@@ -113,6 +115,6 @@ class Post extends Model
 
     public function tags()
     {
-         return $this->belongsToMany('App\Tag');
+         return $this->belongsToMany('App\Tag', 'lv_post_tag');
     }
 }

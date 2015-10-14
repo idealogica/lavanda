@@ -1,12 +1,12 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as LaravelController;
 
 /**
- * Base controller of Lavanda's entities.
+ * Base controller of Lavanda entities.
  */
 class Controller extends LaravelController
 {

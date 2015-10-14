@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use Exception;
 use Illuminate\Http\Request;

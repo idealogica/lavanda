@@ -12,7 +12,7 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('lv_tags', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('text');
@@ -27,6 +27,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags');
+        Schema::drop('lv_tags');
     }
 }

@@ -2,7 +2,7 @@
     "name": "idealogica/lavanda",
     "description": "Administrator control panel for Laravel application.",
     "keywords": ["laravel", "crud", "admin", "control", "panel", "administrator", "lavanda"],
-    "homepage": "",
+    "homepage": "https://github.com/idealogica/lavanda",
     "license": "MIT",
     "authors": 
     [
@@ -29,7 +29,7 @@
     {
         "psr-4": 
         {
-            "Lavanda\\": "src/"
+            "Idealogica\\": "src/"
         },    
         "files": 
         [

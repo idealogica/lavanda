@@ -7,7 +7,7 @@ abstract class LavandaDBTestCase extends LavandaTestCase
     public function setUp()
     {
         parent::setUp();
-        $factory = $this->app->make('Illuminate\Database\Eloquent\Factory');
+        $factory = $this->factory;
         include('factories.php');
         if(self::$migrate)
         {

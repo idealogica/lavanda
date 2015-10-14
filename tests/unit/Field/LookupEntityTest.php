@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Field\LookupEntityType;
+use Idealogica\Lavanda\Field\LookupEntityType;
 
 class LookupEntityTypeTest extends LavandaTestCase
 {

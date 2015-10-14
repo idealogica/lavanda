@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor\Storage;
+namespace Idealogica\Lavanda\Descriptor\Storage;
 
 use Illuminate\Http\Request;
 

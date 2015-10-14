@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor;
+namespace Idealogica\Lavanda\Descriptor;
 
 use Illuminate\Support\Collection;
 

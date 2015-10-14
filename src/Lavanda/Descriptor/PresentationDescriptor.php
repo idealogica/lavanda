@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor;
+namespace Idealogica\Lavanda\Descriptor;
 
 use Closure;
 use Exception;
@@ -79,13 +79,13 @@ class PresentationDescriptor extends Descriptor
      * @param string $type
      * @param string $title
      * @param array $parms
-     * @return \Lavanda\Descriptor\Presentation\Presentation
+     * @return \Idealogica\Lavanda\Descriptor\Presentation\Presentation
      * @throws Exception
      */
     private function createPresentation($name, $type, $title = '', array $parms = [])
     {
         $title = $title ?: $name;
-        $class = 'Lavanda\\Descriptor\\Presentation\\'.ucfirst($type).'Presentation';
+        $class = 'Idealogica\Lavanda\\Descriptor\\Presentation\\'.ucfirst($type).'Presentation';
         if(!class_exists($class))
         {
             throw new Exception('Unknown presentation "'.$type.'".');

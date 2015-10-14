@@ -12,7 +12,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('lv_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
@@ -41,6 +41,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('posts');
+        Schema::drop('lv_posts');
     }
 }

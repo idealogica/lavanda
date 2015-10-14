@@ -3,15 +3,17 @@
 namespace App;
 
 use Carbon\Carbon;
-use Lavanda\Model;
-use Lavanda\Descriptor\Descriptor;
-use Lavanda\Descriptor\SortDescriptor;
-use Lavanda\Descriptor\PresentationDescriptor;
+use Idealogica\Lavanda\Model;
+use Idealogica\Lavanda\Descriptor\Descriptor;
+use Idealogica\Lavanda\Descriptor\SortDescriptor;
+use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Kris\LaravelFormBuilder\Form;
 use Illuminate\Database\Eloquent\Builder;
 
 class Comment extends Model
 {
+    protected $table = 'lv_comments';
+
     public static function buildActionsDescriptor(Descriptor $descriptor)
     {
         $descriptor->
@@ -33,8 +35,8 @@ class Comment extends Model
             add('body', 'text', 'Text', ['max_len' => 100])->
             addQueryBuilder(function ($query) {
                 $query->
-                    select('comments.*')->
-                    leftJoin('posts', 'comments.post_id', '=', 'posts.id')->
+                    select('lv_comments.*')->
+                    leftJoin('lv_posts', 'lv_comments.post_id', '=', 'lv_posts.id')->
                     with('post');
             });
     }

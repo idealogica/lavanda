@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor;
+namespace Idealogica\Lavanda\Descriptor;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -63,12 +63,12 @@ class StorageDescriptor extends Descriptor
      * @param string $name
      * @param string $type
      * @param array $parms
-     * @return \Lavanda\Descriptor\Storage\Storage
+     * @return \Idealogica\Lavanda\Descriptor\Storage\Storage
      * @throws Exception
      */
     public function createStorage($name, $type, array $parms = [])
     {
-        $class = 'Lavanda\\Descriptor\\Storage\\'.ucfirst($type).'Storage';
+        $class = 'Idealogica\Lavanda\\Descriptor\\Storage\\'.ucfirst($type).'Storage';
         if(!class_exists($class))
         {
             throw new Exception('Unknown storage "'.$type.'".');

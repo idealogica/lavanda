@@ -15,37 +15,49 @@ class ModelTest extends LavandaDBTestCase
 
     public function testGetActionsDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\Descriptor', Post::getActionsDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\Descriptor',
+            Post::getActionsDescriptor());
         self::assertCount(3, Post::getActionsDescriptor());
     }
 
     public function testGetStorageDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\StorageDescriptor', Post::getStorageDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\StorageDescriptor',
+            Post::getStorageDescriptor());
         self::assertCount(1, Post::getStorageDescriptor());
     }
 
     public function testGetListDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\PresentationDescriptor', Post::getListDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\PresentationDescriptor',
+            Post::getListDescriptor());
         self::assertCount(4, Post::getListDescriptor());
     }
 
     public function testGetItemDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\PresentationDescriptor', Post::getItemDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\PresentationDescriptor',
+            Post::getItemDescriptor());
         self::assertCount(4, Post::getItemDescriptor());
     }
 
     public function testGetSearchDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\Descriptor', Post::getSearchDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\Descriptor',
+            Post::getSearchDescriptor());
         self::assertCount(3, Post::getSearchDescriptor());
     }
 
     public function testGetSortDescriptor()
     {
-        self::assertInstanceOf('Lavanda\Descriptor\SortDescriptor', Post::getSortDescriptor());
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\SortDescriptor',
+            Post::getSortDescriptor());
         self::assertCount(3, Post::getSortDescriptor());
     }
 

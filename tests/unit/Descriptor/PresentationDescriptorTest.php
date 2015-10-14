@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Descriptor\PresentationDescriptor;
+use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 
 class PresentationDescriptorTest extends LavandaTestCase
 {

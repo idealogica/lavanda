@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use Color;
 use Validator;
@@ -21,7 +21,7 @@ use Illuminate\Validation\Factory as ValidationFactory;
 class LavandaServiceProvider extends ServiceProvider
 {
     /**
-     * Lavanda's engine initialisation method.
+     * Lavanda engine initialisation method.
      *
      * @param Request $request
      * @param Router $router
@@ -39,9 +39,6 @@ class LavandaServiceProvider extends ServiceProvider
         Filesystem $fileSystem,
         FormBuilder $formBuilder)
     {
-        // required services
-        $this->app->register('Kris\LaravelFormBuilder\FormBuilderServiceProvider');
-    
         // model dependencies
         Model::setRequest($request);
         Model::setView($viewFactory);
@@ -53,31 +50,31 @@ class LavandaServiceProvider extends ServiceProvider
         if(!$this->app->routesAreCached())
         {
             $router->get('admin', [
-                'uses' => 'Lavanda\MainController@index',
+                'uses' => 'Idealogica\Lavanda\MainController@index',
                 'as' => 'admin.main.index']);
             $router->get('admin/_image', [
-                'uses' => 'Lavanda\ImageController@index',
+                'uses' => 'Idealogica\Lavanda\ImageController@index',
                 'as' => 'admin.image.index']);
             $router->get('admin/{model}', [
-                'uses' => 'Lavanda\EntityController@index',
+                'uses' => 'Idealogica\Lavanda\EntityController@index',
                 'as' => 'admin.entity.index']);
             $router->get('admin/{model}/create', [
-                'uses' => 'Lavanda\EntityController@create',
+                'uses' => 'Idealogica\Lavanda\EntityController@create',
                 'as' => 'admin.entity.create']);
             $router->post('admin/{model}', [
-                'uses' => 'Lavanda\EntityController@store',
+                'uses' => 'Idealogica\Lavanda\EntityController@store',
                 'as' => 'admin.entity.store']);
             $router->get('admin/{model}/{id}', [
-                'uses' => 'Lavanda\EntityController@show',
+                'uses' => 'Idealogica\Lavanda\EntityController@show',
                 'as' => 'admin.entity.show']);
             $router->get('admin/{model}/{id}/edit', [
-                'uses' => 'Lavanda\EntityController@edit',
+                'uses' => 'Idealogica\Lavanda\EntityController@edit',
                 'as' => 'admin.entity.edit']);
             $router->put('admin/{model}/{id}', [
-                'uses' => 'Lavanda\EntityController@update',
+                'uses' => 'Idealogica\Lavanda\EntityController@update',
                 'as' => 'admin.entity.update']);
             $router->delete('admin/{model}/{id}', [
-                'uses' => 'Lavanda\EntityController@destroy',
+                'uses' => 'Idealogica\Lavanda\EntityController@destroy',
                 'as' => 'admin.entity.destroy']);
         }
 
@@ -112,7 +109,7 @@ class LavandaServiceProvider extends ServiceProvider
                 {
                     $model = strtolower(basename($file, ".php"));
                     $modelClass = getModelClass($model);
-                    if(!in_array('Lavanda\Model', class_parents($modelClass)))
+                    if(!in_array('Idealogica\Lavanda\Model', class_parents($modelClass)))
                     {
                         continue;
                     }
@@ -244,21 +241,22 @@ class LavandaServiceProvider extends ServiceProvider
     {
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.date',
-            'Lavanda\\Field\DateType');
+            'Idealogica\\Lavanda\\Field\DateType');
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.image',
-            'Lavanda\\Field\ImageType');
+            'Idealogica\\Lavanda\\Field\ImageType');
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.fieldset',
-            'Lavanda\\Field\\FieldSetType');
+            'Idealogica\\Lavanda\\Field\\FieldSetType');
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.rowset',
-            'Lavanda\\Field\\RowSetType');
+            'Idealogica\\Lavanda\\Field\\RowSetType');
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.lookup',
-            'Lavanda\\Field\LookupType');
+            'Idealogica\\Lavanda\\Field\LookupType');
         $this->app['config']->set(
             'laravel-form-builder.custom_fields.lookup_entity',
-            'Lavanda\\Field\LookupEntityType');
+            'Idealogica\\Lavanda\\Field\LookupEntityType');
+        $this->app->register('Kris\LaravelFormBuilder\FormBuilderServiceProvider');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Field\ImageType;
+use Idealogica\Lavanda\Field\ImageType;
 
 class ImageTypeTest extends LavandaTestCase
 {

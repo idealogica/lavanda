@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda;
+namespace Idealogica\Lavanda;
 
 use Illuminate\Http\Request;
 use Illuminate\Config\Repository;

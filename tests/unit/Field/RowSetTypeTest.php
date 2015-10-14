@@ -1,5 +1,5 @@
 <?php
-use Lavanda\Field\RowSetType;
+use Idealogica\Lavanda\Field\RowSetType;
 
 class RowSetTypeTest extends LavandaDBTestCase
 {

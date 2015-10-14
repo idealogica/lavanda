@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor\Presentation;
+namespace Idealogica\Lavanda\Descriptor\Presentation;
 
 use Illuminate\Contracts\View\Factory as ViewFactory;
 

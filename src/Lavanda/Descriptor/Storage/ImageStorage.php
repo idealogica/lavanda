@@ -1,5 +1,5 @@
 <?php
-namespace Lavanda\Descriptor\Storage;
+namespace Idealogica\Lavanda\Descriptor\Storage;
 
 /**
  * Handles image file.
