@@ -53,8 +53,8 @@ Lavanda model must be it's child. It inherits form Laravel
 Illuminate\Database\Eloquent\Model class and can be used in a similar way 
 so you can use it in a both front-end and administrative parts of your application. 
 
-Any Lavanda model must override these methods to provide basic information about
-describing object:
+Any Lavanda model must override two methods listed below to provide basic information about
+describing object.
 
 ##### Model::buildListDescriptor
 ```php
@@ -85,9 +85,9 @@ public function addQueryBuilder(\Closure $queryBuilder)
 Where $queryBuilder is a closure with a `\Illuminate\Database\Eloquent\Builder $queryBuilder` as argument.
 <br/><br/>
 For now these types of presentaions can be used in PresentationDescriptor::add method:
-    * text - displays text
-    * image - displays image
-    * entity - represents sub-item in views
+* text - displays text
+* image - displays image
+* entity - represents sub-item in views
 
 ##### Model::buildItemDescriptor
 ```php
@@ -110,9 +110,11 @@ public static function buildItemDescriptor(
             ]);
 }
 ```
+<br />
 
 ---
 
+<br />
 At this point if you have implelemented mehods described above you will meet all requirements 
 for you Lavanda model so for now it can be used for displaying list of items and item itself.
 Now you can follow **http://yourdomain/admin** adddress and test it.<br />
@@ -160,7 +162,7 @@ StorageDescriptor::add method is used to describe how to store your external fil
 public function add($name, $type = 'image', array $parms = [])
 ```
 For now these types of storages can be used in StorageDescriptor::add method:
-    * image - stores/loads images from disk
+* image - stores/loads images from disk
 
 ##### Model::buildSearchDescriptor
 ```php
@@ -255,14 +257,17 @@ Detailed information how to use laravel-form-builder you can find on
 [it's manual page](http://kristijanhusak.github.io/laravel-form-builder/).
 <br /><br />
 In addition to laravel-form-builder default controls Lavanda offers its own types:
-    * date - date input control
-    * image - image input control
-    * fieldset - sub-form from related model, one-to-one relationship
-    * rowset - multiple rows sub-forms for one-to-many relationship
-    * lookup - list of checkboxes for many-to-many relationship
+* date - date input control
+* image - image input control
+* fieldset - sub-form from related model, one-to-one relationship
+* rowset - multiple rows sub-forms for one-to-many relationship
+* lookup - list of checkboxes for many-to-many relationship
+<br />
+<br />
 
 ---
-    
+
+<br />
 Additionally you may want to override these methods of Lavanda model to change some of your model attributes.
 
 ##### Model::getName
@@ -301,23 +306,23 @@ Project follows PSR-2 standart with these violations:
 
     * if open brace placed on new line then close brace placed on new line too
     
-    ```php
-    $var = 
-    [
-        1 => 'new',
-        2 => 'line',
-        3 => 'placement'
-    ];
-    ```
+     ```php
+     $var = 
+     [
+         1 => 'new',
+         2 => 'line',
+         3 => 'placement'
+     ];
+     ```
     
     * if open brace stays on same line then close brace placed on last line of the block
     
-    ```php
-    $var = [
-        1 => 'new',
-        2 => 'line',
-        3 => 'placement'];
-    ```
+     ```php
+     $var = [
+         1 => 'new',
+         2 => 'line',
+         3 => 'placement'];
+     ```
     
 2. There must not be spaces after the control structure keyword.
 
