@@ -118,7 +118,7 @@ public static function buildItemDescriptor(
 At this point if you have implelemented mehods described above you will meet all requirements 
 for you Lavanda model so for now it can be used for displaying list of items and item itself.
 Now you can follow **http://yourdomain/admin** adddress and test it.<br />
-Usually you may want to continue model tweaking and override other methods to provide
+Perhaps you may want to continue model tweaking and override other methods to provide
 ability of searching, sorting, adding and editing items.
 
 ##### Model::buildActionsDescriptor
@@ -295,6 +295,14 @@ controller to use with this model.
 public static function getItemsPerPage()
 ```
 Gets number of list items per page.
+
+### Examples
+
+There are some examples of Lavanda models shipped inside test environment:
+
+* [Blog post model](tests/models/Post.php)
+* [Post tag model](tests/models/Tag.php)
+* [Post comment model](tests/models/Comment.php)
 
 ### Contributing
 
