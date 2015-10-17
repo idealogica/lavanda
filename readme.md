@@ -25,26 +25,26 @@ mistic100/randomcolor, idealogica/color and PHP >= 5.5.9.
 Installation steps:
 
 1. Add Lavanda to your composer.json file:
-```php
-composer require idealogica/lavanda:~1.0.0
-```
+   ```
+   composer require idealogica/lavanda:~1.0.0
+   ```
 
 1. Add Lavanda service provider to config/app.php:
-```php
-Idealogica\Lavanda\LavandaServiceProvider::class
-```
+   ```php
+   Idealogica\Lavanda\LavandaServiceProvider::class
+   ```
 
 2. Publish Lavanda assets:
-```
-php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=public
-```
+   ```
+   php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=public
+   ```
 
 3. If neccesary config, translation and views can also be published:
-```
-php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=config
-php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=lang
-php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=views
-```
+   ```
+   php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=config
+   php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=lang
+   php artisan vendor:publish --provider 'Idealogica\Lavanda\LavandaServiceProvider' --tag=views
+   ```
 
 ### Quick start
 
@@ -56,14 +56,16 @@ so you can use it in a both front-end and administrative parts of your applicati
 Any Lavanda model must override these methods to provide basic information about
 describing object:
 
-* ####Model::buildListDescriptor
+##### Model::buildListDescriptor
 ```php
-public static function buildListDescriptor(\Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+public static function buildListDescriptor(
+    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 ```
 Used for items list descriptor adjustment. There you should add columns to display in table
 on items list page.
 ```php
-public static function buildListDescriptor(\Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+public static function buildListDescriptor(
+    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 {
     $descriptor->
         add('id', 'text', '#', ['width' => '50px'])->
@@ -87,14 +89,16 @@ For now these types of presentaions can be used in PresentationDescriptor::add m
     * image - displays image
     * entity - represents sub-item in views
 
-* ####Model::buildItemDescriptor
+##### Model::buildItemDescriptor
 ```php
-public static function buildItemDescriptor(\Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+public static function buildItemDescriptor(
+    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 ```
 Similar to the Model::buildListDescriptor. Used for item info descriptor adjustment. There 
 you should add rows to display in table on item info page. 
 ```php
-public static function buildItemDescriptor(\Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+public static function buildItemDescriptor(
+    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 {
     $descriptor->
         add('id', 'text', '#')->
@@ -115,7 +119,7 @@ Now you can follow **http://yourdomain/admin** adddress and test it.<br />
 Usually you may want to continue model tweaking and override other methods to provide
 ability of searching, sorting, adding and editing items.
 
-* ####Model::buildActionsDescriptor
+##### Model::buildActionsDescriptor
 ```php
 public static function buildActionsDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
@@ -133,14 +137,16 @@ public static function buildActionsDescriptor(\Idealogica\Lavanda\Descriptor\Des
 }
 ```
 
-* ####Model::buildStorageDescriptor
+##### Model::buildStorageDescriptor
 ```php
-public static function buildStorageDescriptor(\Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
+public static function buildStorageDescriptor(
+    \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
 ```
 If overrided can be used for describing your external (non-database) storages. For example
 if you want to use image data type you should describe how to store it on your hard disk.
 ```php
-public static function buildStorageDescriptor(\Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
+public static function buildStorageDescriptor(
+    \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
 {
     $descriptor->
         add('image', 'image', [
@@ -156,7 +162,7 @@ public function add($name, $type = 'image', array $parms = [])
 For now these types of storages can be used in StorageDescriptor::add method:
     * image - stores/loads images from disk
 
-* ####Model::buildSearchDescriptor
+##### Model::buildSearchDescriptor
 ```php
 public static function buildSearchDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
@@ -171,7 +177,7 @@ public static function buildSearchDescriptor(\Idealogica\Lavanda\Descriptor\Desc
 }
 ```
 
-* ####Model::buildSortDescriptor
+##### Model::buildSortDescriptor
 ```php
 public static function buildSortDescriptor(\Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
 ```
@@ -190,7 +196,7 @@ SortDescriptor::add method is used to describe which fields show in 'sort by' se
 public function add($name, $title = '')
 ```
 
-* ####Model::buildFormQuery
+##### Model::buildFormQuery
 ```php
 public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $query)
 ```
@@ -203,7 +209,7 @@ public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $que
 }
 ```
 
-* ####Model::buildForm
+##### Model::buildForm
 ```php
 public static function buildForm(\Kris\LaravelFormBuilder\Form $form, $config)
 ```
@@ -259,27 +265,27 @@ In addition to laravel-form-builder default controls Lavanda offers its own type
     
 Additionally you may want to override these methods of Lavanda model to change some of your model attributes.
 
-* ####Model::getName
+##### Model::getName
 ```php
 public static function getName()
 ```
 Gets model name to diplay in UI.
 
-* ####Model::getPluralName
+##### Model::getPluralName
 ```php
 public static function getPluralName()
 ```
 Gets model plural name to diplay in UI. For English language it's not neccessary to 
 overrirde this method.
 
-* ####Model::hasController
+##### Model::hasController
 ```php
 public static function hasController()
 ```
 Determines if model has a custom controller. Simply return true if you have your own custom
 controller to use with this model.
 
-* ####Model::getItemsPerPage
+##### Model::getItemsPerPage
 ```php
 public static function getItemsPerPage()
 ```
