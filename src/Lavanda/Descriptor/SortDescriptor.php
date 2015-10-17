@@ -9,6 +9,14 @@ use Form;
 class SortDescriptor extends Descriptor
 {
     /**
+     * {@inheritDoc}
+     */
+    public function add($name, $title = '')
+    {
+        return parent::add($name, $title ?: $name);
+    }
+
+    /**
      * Renders sort select.
      *
      * @return string
