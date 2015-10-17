@@ -44,6 +44,7 @@ class Post extends Model
     public static function buildItemDescriptor(PresentationDescriptor $descriptor)
     {
         $descriptor->
+            add('id', 'text', '#')->
             add('created_at', 'text', 'Date')->
             add('title', 'text', 'Title')->
             add('body', 'text', 'Text')->
