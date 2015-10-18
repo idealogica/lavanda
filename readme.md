@@ -1,5 +1,6 @@
 # Lavanda
 
+<img align="right" vspace="5" src="http://www.idealogica.ru/lavanda/image/lavanda.png?ss=1">
 Administrator control panel for Laravel application.
 It can be used for quiclky building or prototyping administrative interface of your site or service.
 The main idea of Lavanda is to enhance Eloquent models to provide all required information 
@@ -16,6 +17,10 @@ lookup field(many-to-many)
 * it's extendable: different kinds of data types and controls can be easily added
 
 It uses [laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) for forms management.
+
+### Demo
+
+You can visit [project demo page](http://www.idealogica.ru/lavanda/admin) and use it without any restrictions. Database is restored every hour.
 
 ### Installation
 
@@ -123,14 +128,16 @@ ability of searching, sorting, adding and editing items.
 
 ##### Model::buildActionsDescriptor
 ```php
-public static function buildActionsDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+public static function buildActionsDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
 If overrided can be used for allowing some of controller actions. By default 
 index (items list) and show (item info) actions of Lavanda EntityConstroller are allowed. 
 If you want to extend your model functionality you can grant permissions to acces other 
 actions such as create, edit and destroy.
 ```php
-public static function buildActionsDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+public static function buildActionsDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 {
     $descriptor->
         add('create')->
@@ -166,11 +173,13 @@ For now these types of storages can be used in StorageDescriptor::add method:
 
 ##### Model::buildSearchDescriptor
 ```php
-public static function buildSearchDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+public static function buildSearchDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
 If overrided can be used for describing fields to search by. 
 ```php
-public static function buildSearchDescriptor(\Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+public static function buildSearchDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 {
     $descriptor->
         add('id')->
@@ -181,11 +190,13 @@ public static function buildSearchDescriptor(\Idealogica\Lavanda\Descriptor\Desc
 
 ##### Model::buildSortDescriptor
 ```php
-public static function buildSortDescriptor(\Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
+public static function buildSortDescriptor(
+   \Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
 ```
 If overrided can be used for describing fields to sort by.
 ```php
-public static function buildSortDescriptor(\Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
+public static function buildSortDescriptor(
+   \Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
 {
     $descriptor->
         add('id', '#')->
