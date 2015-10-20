@@ -168,6 +168,10 @@ form button.form-control
 {
     margin-right: 10px;
 }
+.item th
+{
+    white-space: nowrap;
+}
 .form-container
 {
     border: 1px solid #CCCCCC;

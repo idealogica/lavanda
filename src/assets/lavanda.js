@@ -40,6 +40,20 @@ $(function()
         location.reload();
     });
 
+    // removes all empty image fields from forms
+    $('form').submit(function ()
+    {
+        $(this).find('input.lavanda-image-upload').each(function ()
+        {
+            var val = $(this).val();
+            if(!val)
+            {
+                $(this).attr('disabled','disabled');
+            }
+        });
+        return true;
+    });
+
     // handles click on "add item" button of rowset from field
     $('.rowset-add').click(function ()
     {
@@ -67,8 +81,12 @@ $(function()
     // handles click "clear value" button of image form field
     $(document).on("click", ".image-field-clear", function ()
     {
-        var name = $(this).attr('data-name');
-        $('#' + name).attr('required', 'required');
+        var name = $(this).attr('data-name').replace(/([\[\]])/g, "\\$1");
+        var required = $(this).attr('data-required');
+        if(required === '1')
+        {
+            $('#' + name).attr('required', 'required');
+        }
         $('#image-field-hidden-' + name).val('');
         $('#image-field-thumbnail-' + name).hide();
     });
