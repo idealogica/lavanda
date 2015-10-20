@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<table class="table">
+<table class="table item">
     <tbody>
         @foreach($rows as $key => $presentation)
             <tr>

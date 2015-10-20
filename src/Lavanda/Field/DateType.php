@@ -40,4 +40,20 @@ class DateType extends FormField
         $options['attr']['data-format'] = $preparedOptions['format'];
         return parent::render($options, $showLabel, $showField, $showError);
     }
+
+    /*
+    public function setValue($value)
+    {
+        dd($this->parent);
+
+        dd($this->getModelValueAttribute($this->parent->getModel(), $this->name));
+
+        parent::setValue($value);
+        dd(debug_backtrace());
+        dd($value);
+        dd($this->getValue());
+        return $this;
+    }
+     * 
+     */
 }

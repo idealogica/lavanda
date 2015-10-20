@@ -8,7 +8,9 @@
     <?php endif; ?>
     <?php if ($showField): ?>
         <?php foreach ((array)$options['children'] as $child): ?>
-            <div class="lookup-entity-child"><?= $child->render(['selected' => $options['selected']], true, true, false) ?></div>
+            <div class="lookup-entity-child">
+                <?= $child->render(['selected' => $options['selected']], true, true, false) ?>
+            </div>
         <?php endforeach; ?>
         <?php if ($options['help_block']['text']): ?>
             <<?= $options['help_block']['tag'] ?> <?= $options['help_block']['helpBlockAttrs'] ?>>

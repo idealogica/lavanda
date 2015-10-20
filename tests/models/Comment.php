@@ -8,11 +8,15 @@ use Idealogica\Lavanda\Descriptor\Descriptor;
 use Idealogica\Lavanda\Descriptor\SortDescriptor;
 use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Kris\LaravelFormBuilder\Form;
-use Illuminate\Database\Eloquent\Builder;
 
 class Comment extends Model
 {
     protected $table = 'lv_comments';
+
+    public static function getItemsPerPage()
+    {
+        return 8;
+    }
 
     public static function buildActionsDescriptor(Descriptor $descriptor)
     {
@@ -27,13 +31,14 @@ class Comment extends Model
         $descriptor->
             add('id', 'text', '#', ['width' => '50px'])->
             add('post', 'entity', 'Post', [
-                'width' => '150px',
+                'width' => '250px',
                 'model' => 'App\Post',
                 'property' => 'title'])->
             add('created_at', 'text', 'Date', ['width' => '120px'])->
             add('name', 'text', 'User name', ['width' => '120px'])->
-            add('body', 'text', 'Text', ['max_len' => 100])->
-            addQueryBuilder(function ($query) {
+            add('body', 'text', 'Text', ['max_len' => 250])->
+            addQueryBuilder(function ($query)
+            {
                 $query->
                     select('lv_comments.*')->
                     leftJoin('lv_posts', 'lv_comments.post_id', '=', 'lv_posts.id')->
@@ -52,7 +57,8 @@ class Comment extends Model
             add('name', 'text', 'User name')->
             add('email', 'text', 'User email')->
             add('body', 'text', 'Text')->
-            addQueryBuilder(function ($query) {
+            addQueryBuilder(function ($query)
+            {
                 $query->with('post');
             });
     }
@@ -60,9 +66,9 @@ class Comment extends Model
     public static function buildSearchDescriptor(Descriptor $descriptor)
     {
         $descriptor->
-            add('name')->
-            add('email')->
-            add('body');
+            add('lv_comments.name')->
+            add('lv_comments.email')->
+            add('lv_comments.body');
     }
 
     public static function buildSortDescriptor(SortDescriptor $descriptor)
@@ -75,44 +81,35 @@ class Comment extends Model
             add('posts.title', 'Post');
     }
 
-    public static function buildFormQuery(Builder $query)
-    {
-        $query->with('post');
-    }
-
     public static function buildForm(Form $form, $config)
     {
         if(!$config)
         {
             $form->add('post_id', 'entity', [
-                    'label' => 'Post',
-                    'class' => 'App\Post',
-                    'property' => 'title',
-                    'empty_value' => 'Please select a post',
-                    'required' => true
-                ]);
+                'label' => 'Post',
+                'class' => 'App\Post',
+                'property' => 'title',
+                'empty_value' => 'Please select a post',
+                'rules' => 'required',
+                'required' => true]);
         }
         $form->add('created_at', 'date', [
-                'label' => 'Date',
-                'rules' => 'required',
-                'required' => true,
-                'default_value' => Carbon::now()->format('Y-m-d')
-        ])->
+            'label' => 'Date',
+            'rules' => 'required|date',
+            'required' => true,
+            'default_value' => Carbon::now()->format('Y-m-d')])->
         add('name', 'text', [
             'label' => 'User name',
             'rules' => 'required|min:3',
-            'required' => true
-        ])->
+            'required' => true])->
         add('email', 'text', [
             'label' => 'User e-mail',
             'rules' => 'required|email',
-            'required' => true
-        ])->
+            'required' => true])->
         add('body', 'textarea', [
             'label' => 'Text',
             'rules' => 'required|max:5000|min:5',
-            'required' => true
-        ]);
+            'required' => true]);
     }
 
     /**

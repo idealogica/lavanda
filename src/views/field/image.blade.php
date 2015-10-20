@@ -18,7 +18,7 @@
             <?php if(!empty($options['value'])): ?>
                 <div id="image-field-thumbnail-<?= $name ?>">
                     <div class="image-field-cell">
-                        <button type="button" data-name="<?= $name ?>" class="btn btn-default image-field-clear"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span> <?= $options['clear_text'] ?></button>
+                        <button type="button" data-name="<?= $name ?>" data-required="<?= (int)$options['required'] ?>" class="btn btn-default image-field-clear"><span aria-hidden="true" class="glyphicon glyphicon-remove"></span> <?= $options['clear_text'] ?></button>
                     </div>
                     <div class="image-field-cell">
                         {!! renderImage($options['value'], ['class' => 'img-rounded'], 150) !!}

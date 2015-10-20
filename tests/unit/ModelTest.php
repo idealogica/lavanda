@@ -42,7 +42,7 @@ class ModelTest extends LavandaDBTestCase
         self::assertInstanceOf(
             'Idealogica\Lavanda\Descriptor\PresentationDescriptor',
             Post::getItemDescriptor());
-        self::assertCount(4, Post::getItemDescriptor());
+        self::assertCount(5, Post::getItemDescriptor());
     }
 
     public function testGetSearchDescriptor()
@@ -59,6 +59,14 @@ class ModelTest extends LavandaDBTestCase
             'Idealogica\Lavanda\Descriptor\SortDescriptor',
             Post::getSortDescriptor());
         self::assertCount(3, Post::getSortDescriptor());
+    }
+
+    public function testGetDeleteDescriptor()
+    {
+        self::assertInstanceOf(
+            'Idealogica\Lavanda\Descriptor\Descriptor',
+            Post::getDeleteDescriptor());
+        self::assertCount(2, Post::getDeleteDescriptor());
     }
 
     public function testCreateInstance()
@@ -153,6 +161,23 @@ class ModelTest extends LavandaDBTestCase
         $post = $item->post;
         self::assertEquals('5', $post['id']);
         self::assertEquals(5, App\Post::count());
+        // db rollback
+        $this->rollback();
+    }
+
+    public function testDeleteWithRelations()
+    {
+        // one-to-many, many-to-many
+        App\Post::find(1)->deleteWithRelations();
+        self::assertEquals(App\Post::where('id', 1)->count(), 0);
+        self::assertEquals(App\Comment::where('post_id', 1)->count(), 0);
+        self::assertEquals(DB::table('lv_post_tag')->where('post_id', 1)->count(), 0);
+        // one-to-one
+        App\Post::getDeleteDescriptor()->removeDescription('comments');
+        App\Comment::getDeleteDescriptor()->add('post');
+        App\Comment::find(4)->deleteWithRelations();
+        self::assertEquals(App\Comment::where('id', 4)->count(), 0);
+        self::assertEquals(App\Post::where('id', 2)->count(), 0);
         // db rollback
         $this->rollback();
     }

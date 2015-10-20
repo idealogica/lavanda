@@ -115,18 +115,39 @@ abstract class Storage
      * Saves storage value using passed item.
      *
      * @param Illuminate\Database\Eloquent\Model|array $item Item to save with.
+     * @param string $key Parent items names chained.
      * @param array $parms Parameters to override.
      */
-    public function saveWith($item, array $parms = [])
+    public function saveWith($item, $key = '', array $parms = [])
     {
         $this->parms = array_merge($this->parms, $parms);
-        $this->save($item);
+        $this->save($item, $key);
     }
 
     /**
      * Handles storage value saving. Must be overrided in descendant class.
      *
      * @param $item
+     * @param string $key Parent items names chained.
      */
-    abstract public function save($item);
+    abstract public function save($item, $key = '');
+
+    /**
+     * Deletes storage value using passed item.
+     *
+     * @param Illuminate\Database\Eloquent\Model|array $item Item to delete with.
+     * @param array $parms Parameters to override.
+     */
+    public function deleteWith($item, array $parms = [])
+    {
+        $this->parms = array_merge($this->parms, $parms);
+        $this->delete($item);
+    }
+
+    /**
+     * Handles storage value deleting. Must be overrided in descendant class.
+     *
+     * @param $item
+     */
+    abstract public function delete($item);
 }

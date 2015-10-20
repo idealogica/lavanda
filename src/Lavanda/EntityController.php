@@ -244,7 +244,7 @@ class EntityController extends Controller
         {
             abort(404);
         }
-        $item->delete();
+        $item->deleteWithRelations();
         $this->session->flash('msg', trans('lavanda::common.success_destroy'));
         return $this->getRoute('index');
     }

@@ -143,21 +143,24 @@ class LavandaServiceProvider extends ServiceProvider
                     };
                     $stretchRow = function(array &$rowItems) use ($countRow)
                     {
-                        $count = $countRow($rowItems);
-                        if($count < 12)
+                        if($rowItems)
                         {
-                            $add = (int)((12 - $count)/count($rowItems));
-                            foreach($rowItems as &$rowItem)
+                            $count = $countRow($rowItems);
+                            if($count < 12)
                             {
-                                $rowItem['columns'] += $add;
-                            }
-                            foreach($rowItems as &$rowItem)
-                            {
-                                if($countRow($rowItems) >= 12)
+                                $add = (int)((12 - $count)/count($rowItems));
+                                foreach($rowItems as &$rowItem)
                                 {
-                                    break;
+                                    $rowItem['columns'] += $add;
                                 }
-                                $rowItem['columns']++;
+                                foreach($rowItems as &$rowItem)
+                                {
+                                    if($countRow($rowItems) >= 12)
+                                    {
+                                        break;
+                                    }
+                                    $rowItem['columns']++;
+                                }
                             }
                         }
                     };

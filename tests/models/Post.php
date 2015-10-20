@@ -15,6 +15,11 @@ class Post extends Model
 {
     protected $table = 'lv_posts';
 
+    public static function getItemsPerPage()
+    {
+        return 5;
+    }
+
     public static function buildActionsDescriptor(Descriptor $descriptor)
     {
         $descriptor->
@@ -27,9 +32,8 @@ class Post extends Model
     {
         $descriptor->
             add('image', 'image', [
-                'path' => 'public/image/post',
-                'type' => 'jpg'
-            ]);
+                'path' => 'image/post',
+                'type' => 'jpg']);
     }
 
     public static function buildListDescriptor(PresentationDescriptor $descriptor)
@@ -47,10 +51,9 @@ class Post extends Model
             add('id', 'text', '#')->
             add('created_at', 'text', 'Date')->
             add('title', 'text', 'Title')->
-            add('body', 'text', 'Text')->
             add('image', 'image', 'Image', [
-                'img_width' => 500
-                ]);
+                'img_width' => 600])->
+            add('body', 'text', 'Text');
     }
 
     public static function buildSearchDescriptor(Descriptor $descriptor)
@@ -69,6 +72,13 @@ class Post extends Model
             add('title', 'Title');
     }
 
+    public static function buildDeleteDescriptor(Descriptor $descriptor)
+    {
+        $descriptor->
+            add('comments')->
+            add('tags');
+    }
+
     public static function buildFormQuery(Builder $query)
     {
         $query->with('comments')->with('tags');
@@ -79,28 +89,26 @@ class Post extends Model
         $form->
             add('created_at', 'date', [
                 'label' => 'Date',
-                'rules' => 'required',
+                'rules' => 'required|date',
                 'required' => true,
-                'default_value' => Carbon::now()->format('Y-m-d')
-            ])->
+                'default_value' => Carbon::now()->format('Y-m-d')])->
             add('title', 'text', [
                 'label' => 'Post title',
                 'rules' => 'required|min:5',
-                'required' => true
-            ])->
+                'required' => true])->
             add('body', 'textarea', [
                 'label' => 'Post text',
                 'rules' => 'required|max:5000|min:5',
-                'required' => true
-            ])->add('image', 'image', [
+                'required' => true])->
+            add('image', 'image', [
                 'label' => 'Image',
                 'rules' => 'required|lavanda_image:jpeg,gif,png',
-                'required' => true
-            ])->add('tags', 'lookup', [
+                'required' => true])->
+            add('tags', 'lookup', [
                 'model' => 'App\Tag',
                 'property' => 'text',
-                'label' => 'Tags'
-            ])->add('comments', 'rowset', [
+                'label' => 'Tags'])->
+            add('comments', 'rowset', [
                 'model' => 'App\Comment',
                 'label' => 'Comments',
                 'row_label' => 'Comment']);

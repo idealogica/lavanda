@@ -41,7 +41,9 @@ class FieldSetType extends ParentType
     protected function createChildren()
     {
         $modelClass = $this->getOption('model');
-        $form = $modelClass::createForm(null, null, $this->name);
+        $parentModel = $this->parent->getModel();
+        $model = !empty($parentModel[$this->name]) ? $parentModel[$this->name] : null;
+        $form = $modelClass::createForm(null, null, $this->name, $model);
         // laravel-from-builder hack to fix error borders on all fields with the same name
         fixFormBuilderForm(
             $form,

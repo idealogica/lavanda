@@ -28,8 +28,8 @@ class SortDescriptor extends Descriptor
             $items = [];
             foreach($this->items as $key => $item)
             {
-                $items[$key.'#asc'] = '&#11016; sort by '.mb_strtolower($item);
-                $items[$key.'#desc'] = '&#11019; sort by '.mb_strtolower($item);
+                $items[$key.'#asc'] = 'sort by '.mb_strtolower($item).' asc';
+                $items[$key.'#desc'] = 'sort by '.mb_strtolower($item).' desc';
             }
             $value = getUnencryptedCookie('sort');
             return Form::select(

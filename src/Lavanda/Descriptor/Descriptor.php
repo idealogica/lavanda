@@ -43,4 +43,19 @@ class Descriptor extends Collection
     {
         return !empty($this->items[$name]);
     }
+
+    /**
+     * Deletes specified description.
+     *
+     * @param string $name
+     * @return $this
+     */
+    public function removeDescription($name)
+    {
+        if($this->hasDescription($name))
+        {
+            unset($this->items[$name]);
+        }
+        return $this;
+    }
 }

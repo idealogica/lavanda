@@ -12,6 +12,7 @@ use Idealogica\Lavanda\Descriptor\StorageDescriptor;
 use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
@@ -104,6 +105,13 @@ abstract class Model extends EloquentModel
      * @var array
      */
     protected static $sortDescriptors = [];
+
+    /**
+     * Array of delete descriptors instances.
+     *
+     * @var array
+     */
+    protected static $deleteDescriptors = [];
 
     /**
      * Array of models input forms.
@@ -324,6 +332,22 @@ abstract class Model extends EloquentModel
     }
 
     /**
+     * Gets previously defined descriptor of relations to delete.
+     *
+     * @return Descriptor
+     */
+    public static function getDeleteDescriptor()
+    {
+        $class = get_called_class();
+        if(empty(self::$deleteDescriptors[$class]))
+        {
+            self::$deleteDescriptors[$class] = new Descriptor;
+            static::buildDeleteDescriptor(self::$deleteDescriptors[$class]);
+        }
+        return self::$deleteDescriptors[$class];
+    }
+
+    /**
      * Creates new model record instance.
      *
      * @param array $attributes Record attributes
@@ -503,7 +527,22 @@ abstract class Model extends EloquentModel
     {
         if(!empty($item['id']))
         {
-            $storages = self::getStorageDescriptor();
+            foreach($item->getRelations() as $value)
+            {
+                if($value instanceof Model)
+                {
+                    self::attachStorages($value);
+                }
+                elseif($value instanceof Collection)
+                {
+                    foreach($value as $subItem)
+                    {
+                        self::attachStorages($subItem);
+                    }
+                }
+            }
+            $class = get_class($item);
+            $storages = $class::getStorageDescriptor();
             foreach($storages as $storage)
             {
                 $storage->attachTo($item);
@@ -563,6 +602,13 @@ abstract class Model extends EloquentModel
      * @param SortDescriptor $descriptor
      */
     public static function buildSortDescriptor(SortDescriptor $descriptor) {}
+
+    /**
+     * If overrided can be used for adjustment of delete descriptor.
+     *
+     * @param Descriptor $descriptor
+     */
+    public static function buildDeleteDescriptor(Descriptor $descriptor) {}
 
     /**
      * If overrided can be used for adjustment of form item query.
@@ -628,15 +674,13 @@ abstract class Model extends EloquentModel
      * one-to-one, one-to-many, many-to-many relationships.
      *
      * @param array $value Value of item and sub-items.
-     * @param EloquentModel $item Model record to save to.
+     * @param string $prefix Parent items names chained.
      * @return $this
      */
-    public function saveWithRelations(array $value, EloquentModel $item = null)
+    public function saveWithRelations(array $value, $prefix = '')
     {
         $relationValues = [];
-        $item = $item ?: $this;
-        $class = get_class($item);
-        $storages = $class::getStorageDescriptor();
+        $storages = static::getStorageDescriptor();
         foreach($value as $k => $v)
         {
             if(is_array($v))
@@ -649,36 +693,39 @@ abstract class Model extends EloquentModel
                 unset($value[$k]);
             }
         }
-        $item->fill($value)->save();
+        $this->fill($value)->save();
         foreach($relationValues as $k => $v)
         {
-            $relation = $item->$k();
+            $relation = $this->$k();
             if($relation instanceof HasOneOrMany)
             {
                 // save one-to-many relationship collection
                 $relation->delete();
-                foreach($v as $row)
+                foreach($v as $idx => $row)
                 {
                     $instance = $relation->getRelated()->newInstance();
                     $instance->setAttribute(
                         $relation->getPlainForeignKey(),
-                        $item->id);
-                    $this->saveWithRelations($row, $instance);
+                        $this->id);
+                    $instance->saveWithRelations($row, ($prefix ? $prefix.'.' : '').$k.'.'.$idx);
                 }
             }
             elseif($relation instanceof BelongsTo)
             {
                 // save one-to-one relationship collection
-                $instance = $relation->getRelated()->
-                    newInstance()->
-                    find($item->getAttribute($relation->getForeignKey()));
+                // $instance = $relation->getRelated()->
+                //    newInstance()->
+                //    find($this->getAttribute($relation->getForeignKey()));
+                $instance = $relation->getResults();
                 if(!$instance)
                 {
                     $instance = $relation->getRelated()->newInstance();
                 }
-                $this->saveWithRelations($v, $instance);
-                $item[$relation->getForeignKey()] = $instance['id'];
-                $item->save();
+                $instance->saveWithRelations($v, ($prefix ? $prefix.'.' : '').$k);
+                $this->setAttribute(
+                    $relation->getForeignKey(),
+                    $instance['id']);
+                $this->save();
             }
             elseif($relation instanceof BelongsToMany)
             {
@@ -688,8 +735,40 @@ abstract class Model extends EloquentModel
         }
         foreach($storages as $storage)
         {
-            $storage->saveWith($item);
+            $storage->saveWith($this, $prefix);
         }
+        return $this;
+    }
+
+    public function deleteWithRelations()
+    {
+        foreach(static::getDeleteDescriptor() as $relName => $d)
+        {
+            $relation = $this->$relName();
+            if($relation instanceof HasOneOrMany)
+            {
+                // delete one-to-many relationship collection
+                foreach($relation->getResults() as $item)
+                {
+                    $item->deleteWithRelations();
+                }
+            }
+            elseif($relation instanceof BelongsTo)
+            {
+                // delete one-to-one relationship collection
+                $relation->getResults()->deleteWithRelations();
+            }
+            elseif($relation instanceof BelongsToMany)
+            {
+                // delete many-to-many relationship collection
+                $relation->detach();
+            }
+        }
+        foreach(static::getStorageDescriptor() as $storage)
+        {
+            $storage->deleteWith($this);
+        }
+        $this->delete();
         return $this;
     }
 }

@@ -34,13 +34,10 @@ class StorageDescriptorTest extends LavandaTestCase
             getMock();
         $file->expects($this->once())->
             method('isValid')->
-            willReturn(true)->with(self::equalTo('name'));
+            willReturn(true);
         $file->expects($this->once())->
             method('move')->
             with(self::equalTo('vfs://root'), self::equalTo(1));
-        $this->requestMock->expects($this->once())->
-            method('hasFile')->
-            willReturn(true)->with(self::equalTo('name'));
         $this->requestMock->expects($this->once())->
             method('file')->
             willReturn($file)->

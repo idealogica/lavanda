@@ -13,6 +13,11 @@ class Tag extends Model
 {
     protected $table = 'lv_tags';
 
+    public static function getItemsPerPage()
+    {
+        return 5;
+    }
+
     public static function buildActionsDescriptor(Descriptor $descriptor)
     {
         $descriptor->
@@ -49,6 +54,12 @@ class Tag extends Model
             add('text', 'Text');
     }
 
+    public static function buildDeleteDescriptor(Descriptor $descriptor)
+    {
+        $descriptor->
+            add('posts');
+    }
+
     public static function buildFormQuery(Builder $query)
     {
         $query->with('posts');
@@ -56,15 +67,14 @@ class Tag extends Model
 
     public static function buildForm(Form $form, $config)
     {
-        $form->
-            add('text', 'text', [
+        $form->add('text', 'text', [
                 'label' => 'Tag text',
                 'rules' => 'required',
                 'required' => true])->
-            add('posts', 'lookup', [
-                'model' => 'App\Post',
-                'property' => 'title',
-                'label' => 'Posts']);
+        add('posts', 'lookup', [
+            'model' => 'App\Post',
+            'property' => 'title',
+            'label' => 'Posts']);
     }
 
     public function posts()

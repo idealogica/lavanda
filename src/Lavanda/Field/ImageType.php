@@ -13,7 +13,9 @@ class ImageType extends FormField
      */
     protected function getDefaults()
     {
-        return ['clear_text' => 'Clear value'];
+        return [
+            'clear_text' => 'Clear value',
+            'required' => false];
     }
 
     /**
@@ -33,9 +35,23 @@ class ImageType extends FormField
         $showField = true,
         $showError = true)
     {
-        if($this->getOption($this->valueProperty))
+        if(isset($options['attr']) && is_array($options['attr']))
         {
-            $options['required'] = false;
+            $options['attr']['class'] = !empty($options['attr']['class']) ?
+                $options['attr']['class'].' lavanda-image-upload' :
+                $this->options['attr']['class'].' lavanda-image-upload';
+        }
+        else
+        {
+            $options['attr'] = [
+                'class' => $this->options['attr']['class'].' lavanda-image-upload'];
+        }
+        if($this->getValue())
+        {
+            $options['rules'] = str_replace(
+                ['required|', '|required', 'required'],
+                '',
+                $this->getOption('rules'));
             if(isset($this->options['attr']['required']))
             {
                 unset($this->options['attr']['required']);

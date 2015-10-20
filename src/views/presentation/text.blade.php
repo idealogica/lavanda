@@ -1,1 +1,1 @@
-{!! activateLinks(!empty($parms['max_len']) ? str_limit($value, $parms['max_len']) : $value) !!}
+{!! nl2br(activateLinks(!empty($parms['max_len']) ? str_limit($value, $parms['max_len']) : $value)) !!}
