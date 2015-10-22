@@ -14,6 +14,7 @@ Lavanda features:
 * basic data types supported such as text, number, image, date
 * basic controls supported such as input, date, image, fields set(one-to-one), rows set(one-to-many),
 lookup field(many-to-many)
+* it allows to create forms with unlimited nesting level
 * it's extendable: different kinds of data types and controls can be easily added
 
 It uses [laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) for forms management.
@@ -64,19 +65,19 @@ describing object.
 ##### Model::buildListDescriptor
 ```php
 public static function buildListDescriptor(
-    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 ```
 Used for items list descriptor adjustment. There you should add columns to display in table
 on items list page.
 ```php
 public static function buildListDescriptor(
-    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 {
-    $descriptor->
-        add('id', 'text', '#', ['width' => '50px'])->
-        add('created_at', 'text', 'Date', ['width' => '120px'])->
-        add('title', 'text', 'Title', ['max_len' => 100])->
-        add('image', 'image', 'Image', ['width' => '140px', 'img_width' => 100]);
+   $descriptor->
+      add('id', 'text', '#', ['width' => '50px'])->
+      add('created_at', 'text', 'Date', ['width' => '120px'])->
+      add('title', 'text', 'Title', ['max_len' => 100])->
+      add('image', 'image', 'Image', ['width' => '140px', 'img_width' => 100]);
 }
 ```
 PresentationDescriptor::add method is used to describe how to display your data in columns:
@@ -97,22 +98,21 @@ For now these types of presentaions can be used in PresentationDescriptor::add m
 ##### Model::buildItemDescriptor
 ```php
 public static function buildItemDescriptor(
-    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 ```
 Similar to the Model::buildListDescriptor. Used for item info descriptor adjustment. There 
 you should add rows to display in table on item info page. 
 ```php
 public static function buildItemDescriptor(
-    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 {
-    $descriptor->
-        add('id', 'text', '#')->
-        add('created_at', 'text', 'Date')->
-        add('title', 'text', 'Title')->
-        add('body', 'text', 'Text')->
-        add('image', 'image', 'Image', [
-            'img_width' => 500
-            ]);
+   $descriptor->
+      add('id', 'text', '#')->
+      add('created_at', 'text', 'Date')->
+      add('title', 'text', 'Title')->
+      add('image', 'image', 'Image', [
+         'img_width' => 600])->
+      add('body', 'text', 'Text');
 }
 ```
 <br />
@@ -131,7 +131,7 @@ ability of searching, sorting, adding and editing items.
 public static function buildActionsDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
-If overrided can be used for allowing some of controller actions. By default 
+If overridden can be used for allowing some of controller actions. By default 
 index (items list) and show (item info) actions of Lavanda EntityConstroller are allowed. 
 If you want to extend your model functionality you can grant permissions to acces other 
 actions such as create, edit and destroy.
@@ -139,29 +139,28 @@ actions such as create, edit and destroy.
 public static function buildActionsDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 {
-    $descriptor->
-        add('create')->
-        add('edit')->
-        add('destroy');
+   $descriptor->
+      add('create')->
+      add('edit')->
+      add('destroy');
 }
 ```
 
 ##### Model::buildStorageDescriptor
 ```php
 public static function buildStorageDescriptor(
-    \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
 ```
-If overrided can be used for describing your external (non-database) storages. For example
+If overridden can be used for describing your external (non-database) storages. For example
 if you want to use image data type you should describe how to store it on your hard disk.
 ```php
 public static function buildStorageDescriptor(
-    \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
+   \Idealogica\Lavanda\Descriptor\StorageDescriptor $descriptor)
 {
-    $descriptor->
-        add('image', 'image', [
-            'path' => 'public/image/post',
-            'type' => 'jpg'
-        ]);
+   $descriptor->
+      add('image', 'image', [
+         'path' => 'image/post',
+         'type' => 'jpg']);
 }
 ```
 StorageDescriptor::add method is used to describe how to store your external files:
@@ -176,15 +175,15 @@ For now these types of storages can be used in StorageDescriptor::add method:
 public static function buildSearchDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
-If overrided can be used for describing fields to search by. 
+If overridden can be used for describing fields to search by. 
 ```php
 public static function buildSearchDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 {
-    $descriptor->
-        add('id')->
-        add('title')->
-        add('body');
+   $descriptor->
+      add('id')->
+      add('title')->
+      add('body');
 }
 ```
 
@@ -193,15 +192,15 @@ public static function buildSearchDescriptor(
 public static function buildSortDescriptor(
    \Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
 ```
-If overrided can be used for describing fields to sort by.
+If overridden can be used for describing fields to sort by.
 ```php
 public static function buildSortDescriptor(
    \Idealogica\Lavanda\Descriptor\SortDescriptor $descriptor)
 {
-    $descriptor->
-        add('id', '#')->
-        add('created_at', 'Date')->
-        add('title', 'Title');
+   $descriptor->
+      add('id', '#')->
+      add('created_at', 'Date')->
+      add('title', 'Title');
 }
 ```
 SortDescriptor::add method is used to describe which fields show in 'sort by' select:
@@ -209,16 +208,32 @@ SortDescriptor::add method is used to describe which fields show in 'sort by' se
 public function add($name, $title = '')
 ```
 
+##### Model::buildDeleteDescriptor
+```php
+public static function buildDeleteDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+```
+If overridden can be used to enumerate relations that will be used to delete related records.
+```php
+public static function buildDeleteDescriptor(
+   \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
+{
+   $descriptor->
+      add('comments')->
+      add('tags');
+}
+```
+
 ##### Model::buildFormQuery
 ```php
 public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $query)
 ```
-If overrided can be used for form data adjustment. There you may add add some 
+If overridden can be used for form data adjustment. There you may add add some 
 constraints to Eloquent query builder to get proper value to fill form on item edit page.
 ```php
 public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $query)
 {
-    $query->with('comments')->with('tags');
+   $query->with('comments')->with('tags');
 }
 ```
 
@@ -227,39 +242,37 @@ public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $que
 public static function buildForm(\Kris\LaravelFormBuilder\Form $form, $config)
 ```
 It's a main method of Lavanda model. If you plan to implement create and edit functions 
-you should override this method. If overrided it can be used for adjustment of user 
+you should override this method. If overridden it can be used for adjustment of user 
 input form.
 ```php
 public static function buildForm(\Kris\LaravelFormBuilder\Form $form, $config)
 {
-    $form->
-        add('created_at', 'date', [
-            'label' => 'Date',
-            'rules' => 'required',
-            'required' => true,
-            'default_value' => Carbon::now()->format('Y-m-d')
-        ])->
-        add('title', 'text', [
-            'label' => 'Post title',
-            'rules' => 'required|min:5',
-            'required' => true
-        ])->
-        add('body', 'textarea', [
-            'label' => 'Post text',
-            'rules' => 'required|max:5000|min:5',
-            'required' => true
-        ])->add('image', 'image', [
-            'label' => 'Image',
-            'rules' => 'required|lavanda_image:jpeg,gif,png',
-            'required' => true
-        ])->add('tags', 'lookup', [
-            'model' => 'App\Tag',
-            'property' => 'text',
-            'label' => 'Tags'
-        ])->add('comments', 'rowset', [
-            'model' => 'App\Comment',
-            'label' => 'Comments',
-            'row_label' => 'Comment']);
+   $form->
+      add('created_at', 'date', [
+         'label' => 'Date',
+         'rules' => 'required|date',
+         'required' => true,
+         'default_value' => Carbon::now()->format('Y-m-d')])->
+      add('title', 'text', [
+         'label' => 'Post title',
+         'rules' => 'required|min:5',
+         'required' => true])->
+      add('body', 'textarea', [
+         'label' => 'Post text',
+         'rules' => 'required|max:5000|min:5',
+         'required' => true])->
+      add('image', 'image', [
+         'label' => 'Image',
+         'rules' => 'required|lavanda_image:jpeg,gif,png',
+         'required' => true])->
+      add('tags', 'lookup', [
+         'model' => 'App\Tag',
+         'property' => 'text',
+         'label' => 'Tags'])->
+      add('comments', 'rowset', [
+         'model' => 'App\Comment',
+         'label' => 'Comments',
+         'row_label' => 'Comment']);
 }
 ```
 Lavanda creates \Kris\LaravelFormBuilder\Form object and pases it as argument to Model::buildForm
@@ -285,13 +298,13 @@ Additionally you may want to override these methods of Lavanda model to change s
 ```php
 public static function getName()
 ```
-Gets model name to diplay in UI.
+Returns model name to diplay in UI.
 
 ##### Model::getPluralName
 ```php
 public static function getPluralName()
 ```
-Gets model plural name to diplay in UI. For English language it's not neccessary to 
+Returns model plural name to diplay in UI. For English language it's not neccessary to 
 overrirde this method.
 
 ##### Model::hasController
@@ -305,7 +318,7 @@ controller to use with this model.
 ```php
 public static function getItemsPerPage()
 ```
-Gets number of list items per page.
+Returns number of list items per page.
 
 ### Examples
 
