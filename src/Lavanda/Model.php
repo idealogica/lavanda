@@ -552,14 +552,14 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * If overrided can be used for adjustment of controller actions descriptor.
+     * If overridden can be used for adjustment of controller actions descriptor.
      *
      * @param Descriptor $descriptor
      */
     public static function buildActionsDescriptor(Descriptor $descriptor) {}
 
     /**
-     * If overrided can be used for adjustment of external storages descriptor.
+     * If overridden can be used for adjustment of external storages descriptor.
      *
      * @param StorageDescriptor $descriptor
      */
@@ -590,35 +590,35 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * If overrided can be used for adjustment of search descriptor.
+     * If overridden can be used for adjustment of search descriptor.
      *
      * @param PresentationDescriptor $descriptor
      */
     public static function buildSearchDescriptor(Descriptor $descriptor) {}
 
     /**
-     * If overrided can be used for adjustment of sort descriptor.
+     * If overridden can be used for adjustment of sort descriptor.
      *
      * @param SortDescriptor $descriptor
      */
     public static function buildSortDescriptor(SortDescriptor $descriptor) {}
 
     /**
-     * If overrided can be used for adjustment of delete descriptor.
+     * If overridden can be used for adjustment of delete descriptor.
      *
      * @param Descriptor $descriptor
      */
     public static function buildDeleteDescriptor(Descriptor $descriptor) {}
 
     /**
-     * If overrided can be used for adjustment of form item query.
+     * If overridden can be used for adjustment of form item query.
      *
      * @param Builder $query
      */
     public static function buildFormQuery(Builder $query) {}
 
     /**
-     * If overrided can be used for adjustment of item input form.
+     * If overridden can be used for adjustment of item input form.
      *
      * @param Form $form
      * @param string $config
@@ -713,9 +713,6 @@ abstract class Model extends EloquentModel
             elseif($relation instanceof BelongsTo)
             {
                 // save one-to-one relationship collection
-                // $instance = $relation->getRelated()->
-                //    newInstance()->
-                //    find($this->getAttribute($relation->getForeignKey()));
                 $instance = $relation->getResults();
                 if(!$instance)
                 {

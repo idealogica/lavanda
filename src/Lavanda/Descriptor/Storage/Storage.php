@@ -105,7 +105,7 @@ abstract class Storage
     }
 
     /**
-     * Handles storage value loading. Must be overrided in descendant class.
+     * Handles storage value loading. Must be overridden in descendant class.
      *
      * @param $item
      */
@@ -125,7 +125,7 @@ abstract class Storage
     }
 
     /**
-     * Handles storage value saving. Must be overrided in descendant class.
+     * Handles storage value saving. Must be overridden in descendant class.
      *
      * @param $item
      * @param string $key Parent items names chained.
@@ -145,7 +145,7 @@ abstract class Storage
     }
 
     /**
-     * Handles storage value deleting. Must be overrided in descendant class.
+     * Handles storage value deleting. Must be overridden in descendant class.
      *
      * @param $item
      */

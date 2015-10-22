@@ -109,7 +109,7 @@ abstract class Presentation
     }
 
     /**
-     * Gets used template. Must be overrided in descendant class.
+     * Gets used template. Must be overridden in descendant class.
      */
     abstract protected function getTemplate();
 }
