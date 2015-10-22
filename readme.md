@@ -226,12 +226,14 @@ public static function buildDeleteDescriptor(
 
 ##### Model::buildFormQuery
 ```php
-public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $query)
+public static function buildFormQuery(
+   \Illuminate\Database\Eloquent\Builder $query)
 ```
 If overridden can be used for form data adjustment. There you may add add some 
 constraints to Eloquent query builder to get proper value to fill form on item edit page.
 ```php
-public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $query)
+public static function buildFormQuery(
+   \Illuminate\Database\Eloquent\Builder $query)
 {
    $query->with('comments')->with('tags');
 }
@@ -239,13 +241,15 @@ public static function buildFormQuery(\Illuminate\Database\Eloquent\Builder $que
 
 ##### Model::buildForm
 ```php
-public static function buildForm(\Kris\LaravelFormBuilder\Form $form, $config)
+public static function buildForm(
+   \Kris\LaravelFormBuilder\Form $form, $config)
 ```
 It's a main method of Lavanda model. If you plan to implement create and edit functions 
 you should override this method. If overridden it can be used for adjustment of user 
 input form.
 ```php
-public static function buildForm(\Kris\LaravelFormBuilder\Form $form, $config)
+public static function buildForm(
+   \Kris\LaravelFormBuilder\Form $form, $config)
 {
    $form->
       add('created_at', 'date', [
