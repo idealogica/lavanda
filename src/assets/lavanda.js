@@ -5,7 +5,7 @@ $(function()
     // tooltips on action buttons
     $('[data-toggle="tooltip"]').tooltip({delay: { "show": 1000, "hide": 100 }})
 
-    // handler for click event on delete buttons
+    // handler for click event on "delete" buttons
     $('.action-delete').click(function ()
     {
         var url = $(this).attr('href');
@@ -26,7 +26,7 @@ $(function()
         return false;
     });
 
-    // handler for click event on search from reset button
+    // handler for click event on search from "reset" button
     $('#btn-reset').click(function ()
     {
         var url = $(this).attr('data-url');

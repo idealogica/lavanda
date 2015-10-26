@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Session\SessionManager;
 
 /**
- * Default controller of Lavanda's entities.
+ * Default controller of Lavanda entities.
  * Used for CRUD and list of items implementation.
  */
 class EntityController extends Controller
@@ -100,7 +100,7 @@ class EntityController extends Controller
     }
 
     /**
-     * Stores item created item.
+     * Stores created item.
      *
      * @param string $model Model to use.
      * @return \Illuminate\Http\Response

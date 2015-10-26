@@ -4,7 +4,7 @@ use Kris\LaravelFormBuilder\Form;
 if(!function_exists('getUnencryptedCookie'))
 {
     /**
-     * Gets unencrypted cookie writed by JavaScript.
+     * Gets unencrypted cookie written by JavaScript.
      *
      * @param string $name
      * @return string
@@ -259,7 +259,7 @@ if(!function_exists('getModelClass'))
 if(!function_exists('fixFormBuilderForm'))
 {
     /**
-     * Laravel-From-Builder hack to fix error borders on all fields with the same name.
+     * It's the Laravel-From-Builder hack to fix error borders on all fields with the same name.
      *
      * @param Form $form
      * @param string $errorClass

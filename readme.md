@@ -1,19 +1,19 @@
 # Lavanda
 
 <img align="right" vspace="5" src="http://www.idealogica.ru/lavanda/image/lavanda.png?dummy=1">
-Lavanda it's an administrator control panel for Laravel application.
-It can be used for quickly building or prototyping administrative interface of your site or service.
-The main idea of Lavanda is to enhance Eloquent models to provide all required information 
-about your application entities and relationships in one place in unified way. 
-So Lavanda model (which is based on Eloquent model) is used to incorporate your app bussines logic 
+Lavanda is an administrator control panel for Laravel application.
+It can be used for quick building or prototyping administrative interface of your site or service.
+The main idea of Lavanda is to enhance Eloquent models to provide all required information
+about your application entities and relationships in one place in unified way.
+So Lavanda model (which is based on Eloquent model) is used to incorporate your app bussiness logic
 and usually describes how to input, display, save and proccess your data.
 
 Lavanda features:
 * items lists viewing/searching/sorting and CRUD operations
 * implementation of one-to-one, one-to-many, many-to-many relationships
 * basic data types supported such as text, number, image, date
-* basic controls supported such as input, date, image, fields set(one-to-one), rows set(one-to-many),
-lookup field(many-to-many)
+* basic controls supported such as input, date, image, fields set (one-to-one), rows set (one-to-many),
+lookup field (many-to-many)
 * it allows to create forms with unlimited nesting level
 * it's extendable: different kinds of data types and controls can be easily added
 
@@ -21,11 +21,12 @@ It uses [laravel-form-builder](https://github.com/kristijanhusak/laravel-form-bu
 
 ### Demo
 
-You can visit [project demo page](http://www.idealogica.ru/lavanda/admin) and use it without any restrictions. Database is restored every hour.
+You can visit [project demo page](http://www.idealogica.ru/lavanda/admin) and use it
+without any restrictions. Database is restored every hour.
 
 ### Installation
 
-Lavanda requires these packages: Laravel 5, kris/laravel-form-builder, 
+Lavanda requires the following packages: Laravel 5, kris/laravel-form-builder,
 mistic100/randomcolor, idealogica/color and PHP >= 5.5.9.
 
 Installation steps:
@@ -54,10 +55,10 @@ Installation steps:
 
 ### Quick start
 
-Starting point of any Lavanda application is Idealogica\Lavanda\Model class. Any 
-Lavanda model must be it's child. It inherits form Laravel 
-Illuminate\Database\Eloquent\Model class and can be used in a similar way 
-so you can use it in a both front-end and administrative parts of your application. 
+Starting point of any Lavanda application is Idealogica\Lavanda\Model class. Any
+Lavanda model must be its child. It inherits form Laravel
+Illuminate\Database\Eloquent\Model class and can be used in a similar way
+so you can use it in both front-end and administrative parts of your application.
 
 Any Lavanda model must override two methods listed below to provide basic information about
 describing object.
@@ -84,7 +85,7 @@ PresentationDescriptor::add method is used to describe how to display your data 
 ```php
 public function add($name, $type = 'text', $title = '', array $parms = [])
 ```
-Also you may add some constraints to Eloquent query builder by using method PresentationDescriptor::addQueryBuilder:
+Also you may add some constraints to Eloquent query builder using method PresentationDescriptor::addQueryBuilder:
 ```php
 public function addQueryBuilder(\Closure $queryBuilder)
 ```
@@ -100,8 +101,8 @@ For now these types of presentaions can be used in PresentationDescriptor::add m
 public static function buildItemDescriptor(
    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
 ```
-Similar to the Model::buildListDescriptor. Used for item info descriptor adjustment. There 
-you should add rows to display in table on item info page. 
+Similar to the Model::buildListDescriptor. Used for item info descriptor adjustment. There
+you should add rows to display in table on item info page.
 ```php
 public static function buildItemDescriptor(
    \Idealogica\Lavanda\Descriptor\PresentationDescriptor $descriptor)
@@ -120,8 +121,8 @@ public static function buildItemDescriptor(
 ---
 
 <br />
-At this point if you have implelemented mehods described above you will meet all requirements 
-for you Lavanda model so for now it can be used for displaying list of items and item itself.
+At this point if you have implelemented mehods described above you will meet all requirements
+for you Lavanda model. So for now it can be used for displaying list of items and item itself.
 Now you can follow **http://yourdomain/admin** adddress and test it.<br />
 Perhaps you may want to continue model tweaking and override other methods to provide
 ability of searching, sorting, adding and editing items.
@@ -131,9 +132,9 @@ ability of searching, sorting, adding and editing items.
 public static function buildActionsDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
-If overridden can be used for allowing some of controller actions. By default 
-index (items list) and show (item info) actions of Lavanda EntityConstroller are allowed. 
-If you want to extend your model functionality you can grant permissions to acces other 
+If overridden can be used for allowing some of controller actions. By default
+index (items list) and show (item info) actions of Lavanda EntityConstroller are allowed.
+If you want to extend your model functionality, you can grant permissions to acces other
 actions such as create, edit and destroy.
 ```php
 public static function buildActionsDescriptor(
@@ -175,7 +176,7 @@ For now these types of storages can be used in StorageDescriptor::add method:
 public static function buildSearchDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
 ```
-If overridden can be used for describing fields to search by. 
+If overridden can be used for describing fields to search by.
 ```php
 public static function buildSearchDescriptor(
    \Idealogica\Lavanda\Descriptor\Descriptor $descriptor)
@@ -203,7 +204,7 @@ public static function buildSortDescriptor(
       add('title', 'Title');
 }
 ```
-SortDescriptor::add method is used to describe which fields show in 'sort by' select:
+SortDescriptor::add method is used to describe which fields to show in 'sort by' select:
 ```php
 public function add($name, $title = '')
 ```
@@ -229,7 +230,7 @@ public static function buildDeleteDescriptor(
 public static function buildFormQuery(
    \Illuminate\Database\Eloquent\Builder $query)
 ```
-If overridden can be used for form data adjustment. There you may add add some 
+If overridden can be used for form data adjustment. There you may add some
 constraints to Eloquent query builder to get proper value to fill form on item edit page.
 ```php
 public static function buildFormQuery(
@@ -244,8 +245,8 @@ public static function buildFormQuery(
 public static function buildForm(
    \Kris\LaravelFormBuilder\Form $form, $config)
 ```
-It's a main method of Lavanda model. If you plan to implement create and edit functions 
-you should override this method. If overridden it can be used for adjustment of user 
+It's a main method of Lavanda model. If you plan to implement create and edit functions
+you should override this method. If overridden it can be used for adjustment of user
 input form.
 ```php
 public static function buildForm(
@@ -280,9 +281,9 @@ public static function buildForm(
 }
 ```
 Lavanda creates \Kris\LaravelFormBuilder\Form object and pases it as argument to Model::buildForm
-method. laravel-form-builder package offers various types of input controls that can be used in Lavanda.
-Detailed information how to use laravel-form-builder you can find on 
-[it's manual page](http://kristijanhusak.github.io/laravel-form-builder/).
+method. Laravel-form-builder package offers various types of input controls that can be used in Lavanda.
+Detailed information how to use laravel-form-builder you can find on
+[its manual page](http://kristijanhusak.github.io/laravel-form-builder/).
 <br /><br />
 In addition to laravel-form-builder default controls Lavanda offers its own types:
 * date - date input control
@@ -302,13 +303,13 @@ Additionally you may want to override these methods of Lavanda model to change s
 ```php
 public static function getName()
 ```
-Returns model name to diplay in UI.
+Returns model name to display in UI.
 
 ##### Model::getPluralName
 ```php
 public static function getPluralName()
 ```
-Returns model plural name to diplay in UI. For English language it's not neccessary to 
+Returns model plural name to display in UI. For English language it's not neccessary to
 overrirde this method.
 
 ##### Model::hasController
@@ -340,26 +341,26 @@ Project follows PSR-2 standart with these violations:
 
 1. All kinds of braces must be placed in following way:
 
-    * if open brace placed on new line then close brace placed on new line too
-    
+    * if open brace placed on a new line then close brace placed on a new line too
+
      ```php
-     $var = 
+     $var =
      [
          1 => 'new',
          2 => 'line',
          3 => 'placement'
      ];
      ```
-    
-    * if open brace stays on same line then close brace placed on last line of the block
-    
+
+    * if open brace stays on the same line then close brace placed on the last line of the block
+
      ```php
      $var = [
          1 => 'new',
          2 => 'line',
          3 => 'placement'];
      ```
-    
+
 2. There must not be spaces after the control structure keyword.
 
 ### License

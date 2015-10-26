@@ -268,7 +268,7 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * Gets previously defined descriptor of fields for items list.
+     * Gets previously defined descriptor of fields for list of items.
      *
      * @return PresentationDescriptor
      */
@@ -359,7 +359,7 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * Creates new instance of model user input form.
+     * Creates new instance of user input form.
      *
      * @param string $method From method
      * @param string $url Form action URL
@@ -383,7 +383,7 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * Gets existing or create instance of model user input form.
+     * Gets existing instance or create a new user input form.
      *
      * @param string $method From method
      * @param string $url Form action URL
@@ -405,7 +405,7 @@ abstract class Model extends EloquentModel
     }
 
     /**
-     * Gets existing or create instance of search input form.
+     * Gets existing instance or create a new search input form.
      *
      * @param string $action Form action URL
      * @return Form

@@ -72,7 +72,7 @@ abstract class Storage
     }
 
     /**
-     * Gets array of all storage paremeters.
+     * Gets array of all storage parameters.
      *
      * @return array
      */

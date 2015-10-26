@@ -2,7 +2,7 @@
 namespace Idealogica\Lavanda\Descriptor\Presentation;
 
 /**
- * Describes how to render HTML code for named by preperty sub-items.
+ * Describes how to render HTML code for named by property sub-items.
  */
 class EntityPresentation extends Presentation
 {
