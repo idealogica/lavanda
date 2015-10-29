@@ -67,11 +67,28 @@ th select
 {
     background-color: #8B63B5;
     border-color: #8B63B5;
+    background-image: none;
 }
 .btn-primary:focus, .btn-primary:hover
 {
     background-color: #694490;
     border-color: #694490;
+}
+
+
+.btn-primary.active.focus, 
+.btn-primary.active:focus, 
+.btn-primary.active:hover, 
+.btn-primary.focus:active, 
+.btn-primary:active:focus, 
+.btn-primary:active:hover, 
+.open > .dropdown-toggle.btn-primary.focus, 
+.open > .dropdown-toggle.btn-primary:focus, 
+.open > .dropdown-toggle.btn-primary:hover
+{
+    background-image: none;
+    background-color: #573878;
+    border-color: #573878;
 }
 .form-control:focus
 {
