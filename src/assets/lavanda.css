@@ -28,7 +28,7 @@ input[type="file"]
 {
     width: 135px;
     float: right;
-    padding-left: 10px;
+    padding: 0 0 0 4px;
 }
 th select
 {
