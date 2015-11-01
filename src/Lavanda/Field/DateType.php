@@ -15,7 +15,7 @@ class DateType extends FormField
     {
         return [
             'type' => 'datetime',
-            'format' => 'yy-mm-dd',
+            'format' => 'y-mm-dd',
             'attr' => ['data-calendar' => '1']];
     }
 

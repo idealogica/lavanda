@@ -97,7 +97,7 @@ class Comment extends Model
             'label' => 'Date',
             'rules' => 'required|date',
             'required' => true,
-            'default_value' => Carbon::now()->format('Y-m-d')])->
+            'default_value' => Carbon::now()->format('y-m-d')])->
         add('name', 'text', [
             'label' => 'User name',
             'rules' => 'required|min:3',

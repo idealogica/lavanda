@@ -91,7 +91,7 @@ class Post extends Model
                 'label' => 'Date',
                 'rules' => 'required|date',
                 'required' => true,
-                'default_value' => Carbon::now()->format('Y-m-d')])->
+                'default_value' => Carbon::now()->format('y-m-d')])->
             add('title', 'text', [
                 'label' => 'Post title',
                 'rules' => 'required|min:5',
