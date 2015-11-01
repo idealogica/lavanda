@@ -10,7 +10,7 @@
     @if($createAllowed)
         <div class="pull-right add-button">
             <a class="btn btn-default" href="{{ $getRoute('create') }}">
-              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add new
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> {{ trans('lavanda::common.add_item') }}
             </a>
         </div>
     @endif
@@ -21,12 +21,14 @@
 <table class="table">
     <thead>
         <tr>
+            <?php $cnt = 0; ?>
             @foreach($columns as $presentation)
-                <th {!! $presentation->getParm('width') ? 'style="width: '.$presentation->getParm('width').';"' : '' !!}>
+                <th class="{{ $cnt === 3 ? 'hidden-xs' : '' }} {{ $cnt > 3 ? 'hidden-xs hidden-sm' : '' }}" {!! $presentation->getParm('width') ? 'style="width: '.$presentation->getParm('width').';"' : '' !!}>
                     {{ $presentation->getTitle() }}
                 </th>
+                <?php $cnt++; ?>
             @endforeach
-            <th class="sort" colspan="{{ 1 + $editAllowed + $destroyAllowed }}">
+            <th class="sort">
                 {!! $sortDescriptor->renderSortSelect() !!}
             </th>
         </tr>
@@ -34,36 +36,34 @@
     <tbody>
         @foreach($items as $item)
             <tr>
+                <?php $cnt = 0; ?>
                 @foreach($columns as $key => $presentation)
-                    <td>
+                    <td class="{{ $cnt === 3 ? 'hidden-xs' : '' }} {{ $cnt > 3 ? 'hidden-xs hidden-sm' : '' }}">
                         {!! $presentation->render(data_get($item, $key)) !!}
                     </td>
+                    <?php $cnt++; ?>
                 @endforeach
                 <td class="list-actions">
-                    <a data-toggle="tooltip" data-placement="left" title="Show" class="btn btn-default" href="{{ $getRoute('show', ['id' => $item['id']]) }}">
+                    <a data-toggle="tooltip" data-placement="left" title="{{ trans('lavanda::common.show_item') }}" class="btn btn-default" href="{{ $getRoute('show', ['id' => $item['id']]) }}">
                       <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                     </a>
-                </td>
                 @if($editAllowed)
-                    <td class="list-actions">
-                        <a data-toggle="tooltip" data-placement="left" title="Edit" class="btn btn-default" href="{{ $getRoute('edit', ['id' => $item['id']]) }}">
-                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                    <a data-toggle="tooltip" data-placement="left" title="{{ trans('lavanda::common.edit_item') }}" class="hidden-xs btn btn-default" href="{{ $getRoute('edit', ['id' => $item['id']]) }}">
+                      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
                 @endif
                 @if($destroyAllowed)
-                    <td class="list-actions">
-                        <a data-toggle="tooltip" data-placement="left" title="Delete" class="btn btn-default action-delete" data-token="{{ csrf_token() }}" href="{{ $getRoute('destroy', ['id' => $item['id']]) }}">
-                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </a>
-                    </td>
+                    <a data-toggle="tooltip" data-placement="left" title="{{ trans('lavanda::common.delete_item') }}" class="hidden-xs btn btn-default action-delete" data-token="{{ csrf_token() }}" href="{{ $getRoute('destroy', ['id' => $item['id']]) }}">
+                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                    </a>
                 @endif
+                </td>
             </tr>
         @endforeach
     </tbody>
 </table>
 @if(!count($items))
-    <div>No data to display!</div>
+    <div>{{ trans('lavanda::common.no_data') }}</div>
 @endif
 {!! $items->render() !!}
 @endsection

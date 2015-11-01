@@ -26,13 +26,6 @@ $(function()
         return false;
     });
 
-    // handler for click event on search from "reset" button
-    $('#btn-reset').click(function ()
-    {
-        var url = $(this).attr('data-url');
-        location.href = url;
-    });
-
     // handler for refreshing page after sort select is changed by user
     $('#sort').change(function ()
     {

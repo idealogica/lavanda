@@ -11,6 +11,7 @@ use Idealogica\Lavanda\Descriptor\SortDescriptor;
 use Idealogica\Lavanda\Descriptor\StorageDescriptor;
 use Idealogica\Lavanda\Descriptor\PresentationDescriptor;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Translation\Translator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
@@ -35,6 +36,13 @@ abstract class Model extends EloquentModel
      * @var Request
      */
     protected static $request = null;
+
+    /**
+     * Laravel translator service instance.
+     *
+     * @var Translator
+     */
+    protected static $translator = null;
 
     /**
      * Laravel view factory.
@@ -150,6 +158,16 @@ abstract class Model extends EloquentModel
     public static function setRequest(Request $request)
     {
         self::$request = $request;
+    }
+
+    /**
+     * Sets Laravel translator service instance.
+     *
+     * @param Translator $translator
+     */
+    public static function setTranslator(Translator $translator)
+    {
+        self::$translator = $translator;
     }
 
     /**
@@ -325,7 +343,7 @@ abstract class Model extends EloquentModel
         $class = get_called_class();
         if(empty(self::$sortDescriptors[$class]))
         {
-            self::$sortDescriptors[$class] = new SortDescriptor;
+            self::$sortDescriptors[$class] = new SortDescriptor(self::$translator);
             static::buildSortDescriptor(self::$sortDescriptors[$class]);
         }
         return self::$sortDescriptors[$class];
@@ -399,7 +417,7 @@ abstract class Model extends EloquentModel
             self::$forms[$class]->add(
                 'save',
                 'submit',
-                ['label' => trans('lavanda::common.save_button')]);
+                ['label' => self::$translator->trans('lavanda::common.save_button')]);
         }
         return self::$forms[$class];
     }
@@ -424,14 +442,9 @@ abstract class Model extends EloquentModel
                     'label' => false,
                     'attr' => [
                         'placeholder' =>
-                            trans('lavanda::common.search_placeholder')]])->
+                            self::$translator->trans('lavanda::common.search_placeholder')]])->
                 add('search', 'submit', [
-                    'label' => trans('lavanda::common.search_button')])->
-                add('reset', 'button', [
-                    'label' => trans('lavanda::common.search_reset'),
-                    'attr' => [
-                        'id' => 'btn-reset',
-                        'data-url' => $action]]);
+                    'label' => self::$translator->trans('lavanda::common.search_button')]);
         }
         return self::$searchForms[$class];
     }
@@ -633,7 +646,8 @@ abstract class Model extends EloquentModel
      */
     public function getCreatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format(trans('lavanda::common.date_format'));
+        return Carbon::parse($value)->format(
+            self::$translator->trans('lavanda::common.date_format'));
     }
 
     /**
@@ -655,7 +669,8 @@ abstract class Model extends EloquentModel
      */
     public function getUpdatedAtAttribute($value)
     {
-        return Carbon::parse($value)->format(trans('lavanda::common.date_format'));
+        return Carbon::parse($value)->format(
+            self::$translator->trans('lavanda::common.date_format'));
     }
 
     /**

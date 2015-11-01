@@ -9,6 +9,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Translation\Translator;
 use Illuminate\Support\ServiceProvider;
 use Kris\LaravelFormBuilder\FormHelper;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -33,6 +34,7 @@ class LavandaServiceProvider extends ServiceProvider
     public function boot(
         Repository $config,
         Request $request,
+        Translator $translator,
         Router $router,
         ViewFactory $viewFactory,
         ValidationFactory $validationFactory,
@@ -41,6 +43,7 @@ class LavandaServiceProvider extends ServiceProvider
     {
         // model dependencies
         Model::setRequest($request);
+        Model::setTranslator($translator);
         Model::setView($viewFactory);
         Model::setFormBuilder($formBuilder);
         Model::setBasePath($this->app->basePath());

@@ -18,7 +18,7 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-default">
-                <img class="lavanda" src="vendor/lavanda/lavanda.png" alt="">
+                <img class="lavanda hidden-xs" src="vendor/lavanda/lavanda.png" alt="">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>

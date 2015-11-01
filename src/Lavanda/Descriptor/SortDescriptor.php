@@ -2,12 +2,30 @@
 namespace Idealogica\Lavanda\Descriptor;
 
 use Form;
+use Illuminate\Translation\Translator;
 
 /**
  * Describes which fields can be used for sorting.
  */
 class SortDescriptor extends Descriptor
 {
+    /**
+     *
+     * @var type
+     */
+    protected $translator = null;
+
+    /**
+     * Laravel translator service instance.
+     *
+     * @var Translator
+     */
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+        parent::__construct();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -28,8 +46,12 @@ class SortDescriptor extends Descriptor
             $items = [];
             foreach($this->items as $key => $item)
             {
-                $items[$key.'#asc'] = 'sort by '.mb_strtolower($item).' asc';
-                $items[$key.'#desc'] = 'sort by '.mb_strtolower($item).' desc';
+                $items[$key.'#asc'] = $this->translator->trans(
+                    'lavanda::common.sort_asc',
+                    ['item' => mb_strtolower($item)]);
+                $items[$key.'#desc'] = $this->translator->trans(
+                    'lavanda::common.sort_desc',
+                    ['item' => mb_strtolower($item)]);
             }
             $value = getUnencryptedCookie('sort');
             return Form::select(

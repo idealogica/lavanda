@@ -17,10 +17,10 @@
 </table>
 <div class="item-actions">
     <a class="btn btn-default pull-left" href="{{ $getRoute('edit', $item['id']) }}" role="button">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{ trans('lavanda::common.edit_item') }}
     </a>
     <a class="btn btn-default pull-left action-delete" data-token="{{ csrf_token() }}" href="{{ $getRoute('destroy', $item['id']) }}" role="button">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{ trans('lavanda::common.delete_item') }}
     </a>
 </div>
 @endsection

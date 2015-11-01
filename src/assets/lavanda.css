@@ -1,8 +1,8 @@
 body
 {
     padding: 20px 20px 40px 20px;
-    min-width: 650px;
     background-image: url(background.png);
+    min-width: 320px;
 }
 h1
 {
@@ -24,9 +24,11 @@ input[type="file"]
 {
     width: 100%;
 }
-.sort
+.sort select
 {
-    min-width: 150px;
+    width: 135px;
+    float: right;
+    padding-left: 10px;
 }
 th select
 {
@@ -74,16 +76,14 @@ th select
     background-color: #694490;
     border-color: #694490;
 }
-
-
-.btn-primary.active.focus, 
-.btn-primary.active:focus, 
-.btn-primary.active:hover, 
-.btn-primary.focus:active, 
-.btn-primary:active:focus, 
-.btn-primary:active:hover, 
-.open > .dropdown-toggle.btn-primary.focus, 
-.open > .dropdown-toggle.btn-primary:focus, 
+.btn-primary.active.focus,
+.btn-primary.active:focus,
+.btn-primary.active:hover,
+.btn-primary.focus:active,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.open > .dropdown-toggle.btn-primary.focus,
+.open > .dropdown-toggle.btn-primary:focus,
 .open > .dropdown-toggle.btn-primary:hover
 {
     background-image: none;
@@ -142,13 +142,17 @@ form button.form-control
 }
 .search-form
 {
-    width: 340px;
+    width: 250px;
 }
 .search-form div
 {
     margin-bottom: 0;
     display: inline-block;
     vertical-align: middle;
+}
+.search-form input.form-control
+{
+    width: 175px;
 }
 .search-form input,
 .search-form button
@@ -157,27 +161,23 @@ form button.form-control
     display: inline-block;
     vertical-align: middle;
 }
-@media (max-width: 768px)
-{
-    .search-form
-    {
-        margin-top: 15px;
-        clear: both;
-    }
-}
 .pagination
 {
     margin: 0;
 }
 .list-actions
 {
-    width: 1px;
+    text-align: right;
+}
+.list-actions a:nth-child(2)
+{
+    margin: 0 3px;
 }
 .list-panel
 {
     margin: 20px 0;
 }
-.list-panel .add-button
+.add-button
 {
     margin-left: 16px;
 }
@@ -271,4 +271,21 @@ form button.form-control
 {
     display: inline-block;
     margin: 3px 20px 3px 0;
+}
+@media (max-width: 768px)
+{
+    .sort select
+    {
+        width: 40px;
+    }
+    .search-form
+    {
+        margin-top: 15px;
+        clear: both;
+    }
+    .add-button
+    {
+        margin-top: 15px;
+        clear: both;
+    }
 }
