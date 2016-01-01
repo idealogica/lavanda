@@ -340,7 +340,7 @@ Pull requests should include PHPUnit tests.
 
 Project follows PSR-2 standart with these violations:
 
-1. All kinds of braces must be placed in following way:
+1. ALL kinds of braces must be placed in following way:
 
     * if open brace placed on a new line then close brace placed on a new line too
 
@@ -357,7 +357,7 @@ Project follows PSR-2 standart with these violations:
 
      ```php
      $var = [
-         1 => 'new',
+         1 => 'same',
          2 => 'line',
          3 => 'placement'];
      ```
