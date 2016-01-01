@@ -252,7 +252,7 @@ if(!function_exists('getModelClass'))
      */
     function getModelClass($model)
     {
-        return '\\App\\'.ucfirst($model);
+        return config('lavanda.model_ns').'\\'.ucfirst($model);
     }
 }
 
