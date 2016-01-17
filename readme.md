@@ -1,4 +1,4 @@
-# Lavanda
+# Lavanda - administrator control panel
 
 <img src="http://www.idealogica.ru/image/lavanda.png?dummy=1">
 
