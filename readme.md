@@ -22,7 +22,7 @@ It uses [laravel-form-builder](https://github.com/kristijanhusak/laravel-form-bu
 
 ### Demo
 
-You can visit [project demo page](http://www.idealogica.ru/lavanda/admin) and use it
+You can visit [project demo page](http://konstantin.idealogica.me/lavanda/admin) and use it
 without any restrictions. Database is restored every hour.
 
 ### Installation
