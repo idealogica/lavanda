@@ -1,6 +1,6 @@
 # Lavanda - administrator control panel
 
-<img src="http://www.idealogica.ru/image/lavanda.png?dummy=1">
+<img src="http://konstantin.idealogica.me/image/lavanda.png?dummy=1">
 
 Lavanda is an administrator control panel for Laravel application.
 It can be used for quick building or prototyping administrative interface of your site or service.
