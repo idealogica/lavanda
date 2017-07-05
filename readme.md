@@ -1,6 +1,6 @@
 # Lavanda - administrator control panel
 
-<img src="http://konstantin.idealogica.me/image/lavanda.png?dummy=1">
+<img src="http://storage3.static.itmages.com/i/17/0705/h_1499236822_9932815_66ab628b0a.png">
 
 Lavanda is an administrator control panel for Laravel application.
 It can be used for quick building or prototyping administrative interface of your site or service.
@@ -333,36 +333,6 @@ There are some examples of Lavanda models shipped inside test environment:
 * [Blog post model](tests/models/Post.php)
 * [Post tag model](tests/models/Tag.php)
 * [Post comment model](tests/models/Comment.php)
-
-### Contributing
-
-Pull requests should include PHPUnit tests.
-
-Project follows PSR-2 standart with these violations:
-
-1. ALL kinds of braces must be placed in following way:
-
-    * if open brace placed on a new line then close brace placed on a new line too
-
-     ```php
-     $var =
-     [
-         1 => 'new',
-         2 => 'line',
-         3 => 'placement'
-     ];
-     ```
-
-    * if open brace stays on the same line then close brace placed on the last line of the block
-
-     ```php
-     $var = [
-         1 => 'same',
-         2 => 'line',
-         3 => 'placement'];
-     ```
-
-2. There must not be spaces after the control structure keyword.
 
 ### License
 
