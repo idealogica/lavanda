@@ -20,11 +20,6 @@ lookup field (many-to-many)
 
 It uses [laravel-form-builder](https://github.com/kristijanhusak/laravel-form-builder) for forms management.
 
-### Demo
-
-You can visit [project demo page](http://konstantin.idealogica.me/lavanda/admin) and use it
-without any restrictions. Database is restored every hour.
-
 ### Installation
 
 Lavanda requires the following packages: Laravel 5, kris/laravel-form-builder,
